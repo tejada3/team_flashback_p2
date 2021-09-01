@@ -1,11 +1,10 @@
-package com.revature.flash_back_api.models;
+package com.revature.flash_back_api.models.documents;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
 import java.util.Objects;
 
 
