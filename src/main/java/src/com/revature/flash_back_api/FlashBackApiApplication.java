@@ -1,6 +1,6 @@
-package com.revature.flash_back_api;
+package src.com.revature.flash_back_api;
 
-import com.revature.flash_back_api.models.TriviaCard;
+import src.com.revature.flash_back_api.models.TriviaCard;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 

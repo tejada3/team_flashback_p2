@@ -1,4 +1,4 @@
-package com.revature.flash_back_api.models;
+package src.com.revature.flash_back_api.models;
 
 import java.util.List;
 import java.util.Objects;

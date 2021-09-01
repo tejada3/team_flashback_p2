@@ -1,4 +1,4 @@
-package com.revature.flash_back_api.config;
+package src.com.revature.flash_back_api.config;
 
 
 import com.fasterxml.jackson.databind.ObjectMapper;
