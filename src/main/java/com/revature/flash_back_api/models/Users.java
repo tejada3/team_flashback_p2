@@ -1,4 +1,4 @@
-package src.com.revature.flash_back_api.models;
+package com.revature.flash_back_api.models;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;

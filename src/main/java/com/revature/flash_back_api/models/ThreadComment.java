@@ -1,4 +1,4 @@
-package src.com.revature.flash_back_api.models;
+package com.revature.flash_back_api.models;
 
 public class ThreadComment {
 
