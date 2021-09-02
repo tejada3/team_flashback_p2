@@ -4,13 +4,12 @@ server:
 spring:
   application:
     name: flash_back_api
-
-db:
-  ipAddress: 54.197.80.241
-  port: 27017
-  dbName: p2
-  username: myUserAdmin
-  password: Password123
+    mongo:
+      host: 54.197.80.241
+      port: 27017
+      database: p2
+      username: myUserAdmin
+      password: Password123
 
 encrypt:
 salt: N77e3rlDnE6li0K6ftNZJLHUgAaTK0
