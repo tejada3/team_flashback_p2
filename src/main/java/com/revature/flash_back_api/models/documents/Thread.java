@@ -4,14 +4,19 @@ import java.util.Objects;
 
 public class Thread {
     private String threadId;
-    private String userID;
+    private String userId;
+    private String subforumId;
     private String threadTitle;
     private String threadContent;
 
-    public Thread(String threadId, String userID) {
-        this.threadId = threadId;
-        this.userID = userID;
+    public Thread(String userId, String subforumId, String threadTitle, String threadContent) {
+        this.userId = userId;
+        this.subforumId = subforumId;
+        this.threadTitle = threadTitle;
+        this.threadContent = threadContent;
     }
+
+    //#TODO update getters and setters
 
     public String getThreadId() {
         return threadId;
@@ -22,11 +27,11 @@ public class Thread {
     }
 
     public String getUserID() {
-        return userID;
+        return userId;
     }
 
     public void setUserID(String userID) {
-        this.userID = userID;
+        this.userId = userID;
     }
 
     public String getThreadTitle() {
@@ -64,7 +69,7 @@ public class Thread {
     public String toString() {
         return "Thread{" +
                 "threadId='" + threadId + '\'' +
-                ", userID='" + userID + '\'' +
+                ", userID='" + userId + '\'' +
                 ", threadTitle='" + threadTitle + '\'' +
                 ", threadContent='" + threadContent + '\'' +
                 '}';

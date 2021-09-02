@@ -5,8 +5,10 @@ public class ThreadComment {
     private String threadCommentId;
     private String threadId;
     private String userId;
-    private String timestamp;
     private String content;
+    private String timestamp;
+
+    // #TODO generate constructor
 
     public ThreadComment(){super();};
 
