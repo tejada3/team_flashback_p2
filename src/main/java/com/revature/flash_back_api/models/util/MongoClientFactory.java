@@ -6,6 +6,7 @@ import com.mongodb.ServerAddress;
 import com.mongodb.client.MongoClient;
 import com.mongodb.client.MongoClients;
 
+import org.bson.codecs.configuration.CodecRegistry;
 import org.bson.codecs.pojo.PojoCodecProvider;
 import org.springframework.beans.factory.annotation.Value;
 
@@ -14,11 +15,15 @@ import javax.annotation.PreDestroy;
 import java.util.Collections;
 import java.util.List;
 
+import static com.mongodb.MongoClientSettings.getDefaultCodecRegistry;
+import static org.bson.codecs.configuration.CodecRegistries.fromProviders;
+import static org.bson.codecs.configuration.CodecRegistries.fromRegistries;
+
 public class MongoClientFactory {
 
     private MongoClient mongoClient;
 
-    @Value("${db.ipAddress}");
+    @Value("${db.ipAddress}")
     private String ipAddress;
 
     @Value("${db.port}")
@@ -39,9 +44,20 @@ public class MongoClientFactory {
         try{
             List<ServerAddress> hosts = Collections.singletonList(new ServerAddress(ipAddress, port));
             MongoCredential credential = MongoCredential.createScramSha1Credential(username, dbName, password);
+            CodecRegistry defaultCodecRegistry = getDefaultCodecRegistry();
             PojoCodecProvider pojoCodecProvider = PojoCodecProvider.builder().automatic(true).build();
+            CodecRegistry pojoCodecRegistry = fromRegistries(defaultCodecRegistry, fromProviders(pojoCodecProvider));
+
+            MongoClientSettings mongoClientSettings = MongoClientSettings.builder()
+                                                            .applyToClusterSettings(builder -> builder.hosts(hosts))
+                                                            .credential(credential)
+                                                            .codecRegistry(pojoCodecRegistry)
+                                                            .build();
+
+            this.mongoClient = MongoClients.create(mongoClientSettings);
+
         } catch (Exception e) {
-            throw new DataSourceException("An unexpected error has occurred", e)
+             //#TODO Update this exception to DataSourceException
         }
     }
 
