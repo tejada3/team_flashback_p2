@@ -1,6 +1,7 @@
 package com.revature.flash_back_api.web.util.security;
 
 
+import com.revature.flash_back_api.web.dtos.Principal;
 import io.jsonwebtoken.JwtBuilder;
 import io.jsonwebtoken.Jwts;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,14 +17,13 @@ public class TokenGenerator {
     @Autowired
     public TokenGenerator(JwtConfig jwtConfig) { this.jwtConfig = jwtConfig; }
 
-    // TODO: Put a Principal data transfer object here!
-    public String createToken() {
+    public String createToken(Principal subject) {
 
         long now = System.currentTimeMillis();
 
         JwtBuilder tokenBuilder = Jwts.builder()
-                .setId()
-                .setSubject()
+                .setId(subject.getId())
+                .setSubject(subject.getUsername())
                 .setIssuer("revature")
                 .setIssuedAt(new Date(now))
                 .setExpiration(new Date(now + jwtConfig.getExpiration()))

@@ -11,9 +11,10 @@ public class Principal {
 
     public Principal() { super(); }
 
-    // TODO: Make a UsersDTO Constructor here!
+    // TODO: This needs some work!
     public Principal(UsersDTO subject) {
-        this.id = subject
+        this.id = subject.getId();
+        this.username = subject.getUsername();
     }
 
     public String getId() {
