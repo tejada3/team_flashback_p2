@@ -1,12 +1,14 @@
-package com.revature.flash_back_api.models;
+package com.revature.flash_back_api.models.documents;
 
 public class ThreadComment {
 
     private String threadCommentId;
     private String threadId;
     private String userId;
-    private String timestamp;
     private String content;
+    private String timestamp;
+
+    // #TODO generate constructor
 
     public ThreadComment(){super();};
 

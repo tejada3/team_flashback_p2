@@ -1,26 +1,27 @@
-package com.revature.flash_back_api.models;
+package com.revature.flash_back_api.models.documents;
 
 import java.util.List;
 import java.util.Objects;
 
 public class TriviaCard {
     private String cardId;
-    private String userid;
+    private String triviaCardSetId;
     private String question;
     private String correctAnswer;
-    private String points;
     private List<String> answers;
+    private String points;
 
     public TriviaCard(){ super();};
 
-    public TriviaCard(String cardId, String userid, String question, String correctAnswer, String points, List<String> answers) {
-        this.cardId = cardId;
-        this.userid = userid;
+    public TriviaCard(String triviaCardSetId, String question, String correctAnswer, String points, List<String> answers) {
+        this.triviaCardSetId = triviaCardSetId;
         this.question = question;
         this.correctAnswer = correctAnswer;
         this.points = points;
         this.answers = answers;
     }
+
+    // #TODO update getters/setters / equals, hashCode and toString
 
     public String getCardId() {
         return cardId;
@@ -30,13 +31,6 @@ public class TriviaCard {
         this.cardId = cardId;
     }
 
-    public String getUserid() {
-        return userid;
-    }
-
-    public void setUserid(String userid) {
-        this.userid = userid;
-    }
 
     public String getQuestion() {
         return question;
@@ -75,23 +69,24 @@ public class TriviaCard {
         if (this == o) return true;
         if (!(o instanceof TriviaCard)) return false;
         TriviaCard that = (TriviaCard) o;
-        return getCardId().equals(that.getCardId()) && getUserid().equals(that.getUserid()) && getQuestion().equals(that.getQuestion()) && getCorrectAnswer().equals(that.getCorrectAnswer()) && Objects.equals(getPoints(), that.getPoints()) && getAnswers().equals(that.getAnswers());
+        return getCardId().equals(that.getCardId()) && triviaCardSetId.equals(that.triviaCardSetId) && Objects.equals(getQuestion(), that.getQuestion()) && Objects.equals(getCorrectAnswer(), that.getCorrectAnswer()) && Objects.equals(getAnswers(), that.getAnswers()) && Objects.equals(getPoints(), that.getPoints());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getCardId(), getUserid(), getQuestion(), getCorrectAnswer(), getPoints(), getAnswers());
+        return Objects.hash(getCardId(), triviaCardSetId, getQuestion(), getCorrectAnswer(), getAnswers(), getPoints());
     }
+
 
     @Override
     public String toString() {
         return "TriviaCard{" +
                 "cardId='" + cardId + '\'' +
-                ", userid='" + userid + '\'' +
+                ", triviaCardSetId='" + triviaCardSetId + '\'' +
                 ", question='" + question + '\'' +
                 ", correctAnswer='" + correctAnswer + '\'' +
-                ", points='" + points + '\'' +
                 ", answers=" + answers +
+                ", points='" + points + '\'' +
                 '}';
     }
 }
