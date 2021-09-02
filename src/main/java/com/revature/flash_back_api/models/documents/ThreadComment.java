@@ -1,5 +1,12 @@
 package com.revature.flash_back_api.models.documents;
 
+import org.springframework.context.annotation.Scope;
+import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.stereotype.Component;
+
+@Scope("prototype")
+@Component
+@Document(collection = "threadComments")
 public class ThreadComment {
 
     private String threadCommentId;

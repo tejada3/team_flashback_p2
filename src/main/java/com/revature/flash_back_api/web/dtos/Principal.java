@@ -1,11 +1,9 @@
 package com.revature.flash_back_api.web.dtos;
 
 
-import com.revature.flash_back_api.models.documents.Users;
+import com.revature.flash_back_api.models.documents.User;
 import java.util.Objects;
 import io.jsonwebtoken.Claims;
-
-import java.util.Objects;
 
 // This is a regular POJO and does not need to be initialized via Spring
 
@@ -17,7 +15,7 @@ public class Principal {
     public Principal() { super(); }
 
 
-    public Principal(Users subject) {
+    public Principal(User subject) {
         this.id = subject.getUserId();
         this.username = subject.getUsername();
     }

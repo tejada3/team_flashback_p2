@@ -1,6 +1,6 @@
 package com.revature.flash_back_api.services;
 
-import com.revature.flash_back_api.models.documents.Users;
+import com.revature.flash_back_api.models.documents.User;
 import com.revature.flash_back_api.models.repos.UsersRepository;
 import com.revature.flash_back_api.util.exceptions.AuthenticationException;
 import com.revature.flash_back_api.util.exceptions.InvalidRequestException;
@@ -19,7 +19,7 @@ public class UsersService {
         this.usersRepo = usersRepo;
     }
 
-    public Users register(Users newUser) {
+    public User register(User newUser) {
 
         if (!isUserValid(newUser)) {
             throw new InvalidRequestException("Invalid user data provided!");
@@ -40,14 +40,14 @@ public class UsersService {
 
     }
 
-    //
+
     public Principal login(String username, String password) {
 
         if (username == null || username.trim().equals("") || password == null || password.trim().equals("")) {
             throw new InvalidRequestException("Invalid user credentials provided!");
         }
 
-        Users authUser = usersRepo.findUserByCredentials(username, password);
+        User authUser = usersRepo.findUserByUsernameAndPassword(username, password);
 
         if (authUser == null) {
             throw new AuthenticationException("Invalid credentials provided!");
@@ -57,8 +57,8 @@ public class UsersService {
 
     }
 
-
-    public boolean isUserValid(Users user) {
+    //#TODO implement own validation checking
+    public boolean isUserValid(User user) {
         if (user == null) return false;
         if (user.getFirstName() == null || user.getFirstName().trim().equals("")) return false;
         if (user.getLastName() == null || user.getLastName().trim().equals("")) return false;
@@ -66,4 +66,5 @@ public class UsersService {
         if (user.getUsername() == null || user.getUsername().trim().equals("")) return false;
         return user.getPassword() != null && !user.getPassword().trim().equals("");
     }
+
 }

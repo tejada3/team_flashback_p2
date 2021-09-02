@@ -1,8 +1,16 @@
 package com.revature.flash_back_api.models.documents;
 
+import org.springframework.context.annotation.Scope;
+import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.stereotype.Component;
+
 import java.util.List;
 import java.util.Objects;
 
+
+@Scope("prototype")
+@Component
+@Document(collection = "triviaCards")
 public class TriviaCard {
     private String cardId;
     private String triviaCardSetId;

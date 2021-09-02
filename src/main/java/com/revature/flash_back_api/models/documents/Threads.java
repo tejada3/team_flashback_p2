@@ -1,15 +1,22 @@
 package com.revature.flash_back_api.models.documents;
 
+import org.springframework.context.annotation.Scope;
+import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.stereotype.Component;
+
 import java.util.Objects;
 
-public class Thread {
+@Scope("prototype")
+@Component
+@Document(collection = "threads")
+public class Threads {
     private String threadId;
     private String userId;
     private String subforumId;
     private String threadTitle;
     private String threadContent;
 
-    public Thread(String userId, String subforumId, String threadTitle, String threadContent) {
+    public Threads(String userId, String subforumId, String threadTitle, String threadContent) {
         this.userId = userId;
         this.subforumId = subforumId;
         this.threadTitle = threadTitle;
@@ -54,8 +61,8 @@ public class Thread {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Thread)) return false;
-        Thread thread = (Thread) o;
+        if (!(o instanceof Threads)) return false;
+        Threads thread = (Threads) o;
         return getThreadId().equals(thread.getThreadId()) && getUserID().equals(thread.getUserID()) && getThreadTitle().equals(thread.getThreadTitle()) && getThreadContent().equals(thread.getThreadContent());
     }
 

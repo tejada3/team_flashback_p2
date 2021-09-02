@@ -1,10 +1,13 @@
 package com.revature.flash_back_api.models.documents;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
+import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.stereotype.Component;
 
+import org.hibernate.validator.constraints.Length;
+
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
@@ -12,24 +15,39 @@ import java.util.Objects;
 
 @Scope("prototype")
 @Component
-public class Users {
+@Document(collection = "users")
+public class User {
+
 
     private String userId;
+
+    @NotEmpty
     private String firstName;
+
+    @NotEmpty
     private String lastName;
+
+    @Email
     private String email;
+
+    @Length(min = 5, max = 15)
     private String username;
+
+    //TODO add constraints to password field here
     private String password;
+
     private String role;
     private int totalScore  = 0;
     private LocalDateTime registrationDateTime;
 
-    public Users(){
+
+
+
+    public User(){
     super();
     };
 
-
-    Users(String firstName, String lastName, String email, String username, String password, String role, LocalDateTime registrationDateTime){
+    User(String firstName, String lastName, String email, String username, String password, String role, LocalDateTime registrationDateTime){
         this.firstName = firstName;
         this.lastName =  lastName;
         this.email = email;
@@ -110,9 +128,9 @@ public class Users {
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Users)) return false;
-        Users users = (Users) o;
-        return getTotalScore() == users.getTotalScore() && getUserId().equals(users.getUserId()) && getFirstName().equals(users.getFirstName()) && getLastName().equals(users.getLastName()) && getEmail().equals(users.getEmail()) && getUsername().equals(users.getUsername()) && getPassword().equals(users.getPassword()) && Objects.equals(getRole(), users.getRole()) && Objects.equals(registrationDateTime, users.registrationDateTime);
+        if (!(o instanceof User)) return false;
+        User user = (User) o;
+        return getTotalScore() == user.getTotalScore() && getUserId().equals(user.getUserId()) && getFirstName().equals(user.getFirstName()) && getLastName().equals(user.getLastName()) && getEmail().equals(user.getEmail()) && getUsername().equals(user.getUsername()) && getPassword().equals(user.getPassword()) && Objects.equals(getRole(), user.getRole()) && Objects.equals(registrationDateTime, user.registrationDateTime);
     }
 
     @Override
