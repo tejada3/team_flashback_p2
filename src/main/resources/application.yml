@@ -1,12 +1,28 @@
-db.ipAddress=54.197.80.241
-db.port=27017
-db.dbName=p2
-db.username=myUserAdmin
-db.password=Password123
+server:
+  port: 5000 # Port 5000 because AWS Elastic Beanstalk expects for JAR packaged Java apps to listen on this port.
 
-salt=N77e3rlDnE6li0K6ftNZJLHUgAaTK0
+spring:
+  application:
+    name: flash_back_api
 
-jwt.header=Authorization
-jwt.prefix=Bearer 
-jwt.secret=Revature
-jwt.expiration=86400000
+db:
+  ipAddress: 54.197.80.241
+  port: 27017
+  dbName: p2
+  username: myUserAdmin
+  password: Password123
+
+encrypt:
+salt: N77e3rlDnE6li0K6ftNZJLHUgAaTK0
+
+jwt:
+  header: Authorization
+  prefix: Bearer
+  secret: Revature
+  expiration: 86400000
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
