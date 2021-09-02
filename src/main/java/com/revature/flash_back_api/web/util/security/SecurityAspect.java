@@ -12,7 +12,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
-
 import javax.naming.AuthenticationException;
 import javax.servlet.http.HttpServletRequest;
 import java.lang.reflect.Method;
@@ -30,7 +29,7 @@ public class SecurityAspect {
     private final JwtConfig jwtConfig;
 
     public SecurityAspect(JwtConfig jwtConfig) {
-        this.jwtConfig = jwtConfig
+        this.jwtConfig = jwtConfig;
     }
 
     @Around("@annotation(com.revature.flash_back_api.web.util.security.Secured)")
@@ -45,6 +44,7 @@ public class SecurityAspect {
 
         HttpServletRequest req = (Objects.requireNonNull((ServletRequestAttributes) RequestContextHolder.getRequestAttributes())).getRequest();
 
+        // If they are valid and a part of the role list, allow the user through.
         Principal principal = parseToken(req).orElseThrow(() -> new AuthenticationException("Request originates from an unauthenticated source."));
 
         // TODO: Make Authorization Exception and place it here!
