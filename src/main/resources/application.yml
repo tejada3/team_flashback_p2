@@ -4,7 +4,7 @@ server:
 spring:
   application:
     name: flash_back_api
-    mongo:
+    mongodb:
       host: 54.197.80.241
       port: 27017
       database: p2
