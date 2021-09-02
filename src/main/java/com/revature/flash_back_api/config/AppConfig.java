@@ -13,10 +13,10 @@ import org.springframework.context.annotation.PropertySource;
 @PropertySource("classpath:application.properties")
 public class AppConfig {
 
-    @Bean
-    public ObjectMapper objectMapper() {
-        return new ObjectMapper();
-    }
+//    @Bean
+//    public ObjectMapper objectMapper() {
+//        return new ObjectMapper();
+//    }
 
 
 }
