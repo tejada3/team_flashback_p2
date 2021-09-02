@@ -6,8 +6,12 @@ import com.revature.flash_back_api.util.exceptions.AuthenticationException;
 import com.revature.flash_back_api.util.exceptions.InvalidRequestException;
 import com.revature.flash_back_api.util.exceptions.ResourcePersistenceException;
 import com.revature.flash_back_api.web.dtos.Principal;
+import com.revature.flash_back_api.web.dtos.UserDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class UsersService {
@@ -17,6 +21,16 @@ public class UsersService {
     @Autowired
     UsersService(UsersRepository usersRepo){
         this.usersRepo = usersRepo;
+    }
+
+
+
+    public List<UserDTO> findAll(){
+
+        return usersRepo.findAll()
+                .stream()
+                .map(UserDTO::new)
+                .collect(Collectors.toList());
     }
 
     public User register(User newUser) {

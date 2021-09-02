@@ -1,65 +1,31 @@
-package com.revature.flash_back_api.models.documents;
+package com.revature.flash_back_api.web.dtos;
 
-import org.apache.tomcat.jni.Local;
-import org.springframework.context.annotation.Scope;
-import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.stereotype.Component;
-
-import org.hibernate.validator.constraints.Length;
-
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotEmpty;
+import com.revature.flash_back_api.models.documents.User;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
-
-
-@Scope("prototype")
-@Component
-@Document(collection = "users")
-public class User {
+public class UserDTO {
 
 
     private String userId;
-
-    @NotEmpty
     private String firstName;
-
-    @NotEmpty
     private String lastName;
-
-    @Email
     private String email;
-
-    @Length(min = 5, max = 15)
     private String username;
-
-    //TODO add constraints to password field here
-    private String password;
-
     private String role;
     private int totalScore  = 0;
     private LocalDateTime registrationDateTime;
 
 
-
-
-    public User(){
-    super();
-    };
-
-    public User(String firstName, String lastName, String email, String username, String password, String role, LocalDateTime registrationDateTime){
-        this.firstName = firstName;
-        this.lastName =  lastName;
-        this.email = email;
-        this.username = username;
-        this.password = password;
-        this.role = role;
-        this.registrationDateTime = registrationDateTime;
+    public UserDTO(User user){
+        this.userId = user.getUserId();
+        this.firstName = user.getFirstName();
+        this.lastName = user.getLastName();
+        this.email = user.getEmail();
+        this.username = user.getUsername();
+        this.role = user.getRole();
+        this.registrationDateTime = user.getRegistrationDateTime();
     }
-
-
-    // #TODO update getters/setters, equals, toString, hashCode
 
 
     public LocalDateTime getRegistrationDateTime() {
@@ -110,13 +76,6 @@ public class User {
         this.username = username;
     }
 
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
 
     public String getRole() {
         return role;
@@ -134,32 +93,32 @@ public class User {
         this.totalScore = totalScore;
     }
 
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof User)) return false;
-        User user = (User) o;
-        return getTotalScore() == user.getTotalScore() && getUserId().equals(user.getUserId()) && getFirstName().equals(user.getFirstName()) && getLastName().equals(user.getLastName()) && getEmail().equals(user.getEmail()) && getUsername().equals(user.getUsername()) && getPassword().equals(user.getPassword()) && Objects.equals(getRole(), user.getRole()) && Objects.equals(registrationDateTime, user.registrationDateTime);
+        if (!(o instanceof UserDTO)) return false;
+        UserDTO userDTO = (UserDTO) o;
+        return getTotalScore() == userDTO.getTotalScore() && getUserId().equals(userDTO.getUserId()) && getFirstName().equals(userDTO.getFirstName()) && getLastName().equals(userDTO.getLastName()) && getEmail().equals(userDTO.getEmail()) && getUsername().equals(userDTO.getUsername()) && getRole().equals(userDTO.getRole()) && getRegistrationDateTime().equals(userDTO.getRegistrationDateTime());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getUserId(), getFirstName(), getLastName(), getEmail(), getUsername(), getPassword(), getRole(), getTotalScore(), registrationDateTime);
+        return Objects.hash(getUserId(), getFirstName(), getLastName(), getEmail(), getUsername(), getRole(), getTotalScore(), getRegistrationDateTime());
     }
+
 
     @Override
     public String toString() {
-        return "Users{" +
+        return "UserDTO{" +
                 "userId='" + userId + '\'' +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +
                 ", username='" + username + '\'' +
-                ", password='" + password + '\'' +
                 ", role='" + role + '\'' +
                 ", totalScore=" + totalScore +
                 ", registrationDateTime=" + registrationDateTime +
                 '}';
     }
 }
-

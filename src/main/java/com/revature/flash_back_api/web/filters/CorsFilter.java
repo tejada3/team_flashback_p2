@@ -1,4 +1,4 @@
-package com.revature.flash_back_api.web.util;
+package com.revature.flash_back_api.web.filters;
 
 
 import javax.servlet.FilterChain;

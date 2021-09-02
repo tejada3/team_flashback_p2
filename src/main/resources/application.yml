@@ -4,6 +4,7 @@ server:
 spring:
   application:
     name: flash_back_api
+  data:
     mongodb:
       host: 54.197.80.241
       port: 27017
@@ -11,8 +12,9 @@ spring:
       username: myUserAdmin
       password: Password123
 
+
 encrypt:
-salt: N77e3rlDnE6li0K6ftNZJLHUgAaTK0
+  salt: N77e3rlDnE6li0K6ftNZJLHUgAaTK0
 
 jwt:
   header: Authorization

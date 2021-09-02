@@ -1,10 +1,6 @@
-package com.revature.flash_back_api.util;
+package com.revature.flash_back_api.web.util;
 
-import com.revature.flash_back_api.util.exceptions.InvalidRequestException;
-import com.revature.flash_back_api.util.exceptions.ResourceNotFoundException;
-import com.revature.flash_back_api.util.exceptions.ResourcePersistenceException;
-import com.revature.flash_back_api.util.exceptions.DataSourceException;
-import com.revature.flash_back_api.util.exceptions.AuthenticationException;
+import com.revature.flash_back_api.util.exceptions.*;
 import com.revature.flash_back_api.web.dtos.ErrorResponse;
 import org.springframework.http.HttpStatus;
 import java.util.Objects;
@@ -18,21 +14,21 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 public class ErrorResponseAspect {
 
     @ExceptionHandler
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
-    public ErrorResponse handleInvalidRequestException(InvalidRequestException e) {
-        return new ErrorResponse(400, e.getMessage());
-    }
-
-    @ExceptionHandler
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ResponseStatus(HttpStatus.CONFLICT)
     public ErrorResponse handleResourcePersistenceException(ResourcePersistenceException e) {
         return new ErrorResponse(409, e.getMessage());
     }
 
     @ExceptionHandler
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ResponseStatus(HttpStatus.UNAUTHORIZED)
     public ErrorResponse handleAuthenticationException(AuthenticationException e) {
         return new ErrorResponse(401, e.getMessage());
+    }
+
+    @ExceptionHandler
+    @ResponseStatus(HttpStatus.FORBIDDEN)
+    public ErrorResponse handleAuthorizationException(AuthorizationException e) {
+        return new ErrorResponse(403, e.getMessage());
     }
 
     @ExceptionHandler
@@ -59,13 +55,13 @@ public class ErrorResponseAspect {
     }
 
     @ExceptionHandler
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ResponseStatus(HttpStatus.NOT_FOUND)
     public ErrorResponse handleDataSourceException(DataSourceException e) {
-        return new ErrorResponse(400, e.getMessage());
+        return new ErrorResponse(404, e.getMessage());
     }
 
     @ExceptionHandler
-    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public ErrorResponse handleOtherExceptions(Exception e) {
         return new ErrorResponse(500, e.getMessage());
     }
