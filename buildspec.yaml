@@ -1,0 +1,23 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      java: corretto8
+  pre_build:
+    commands:
+      - aws s3 cp s3://jose-robert-student-management/properties.properties ./src/main/resources/properties.properties
+  build:
+    commands:
+      - echo Build started on `date`
+      - mvn package
+      - mv target/*.war ./flashback.war
+  post_build:
+    commands:
+      - echo Build completed on `date`
+      - unzip flashback.war -d artifact/
+      - mv artifact/WEB-INF WEB-INF
+artifacts:
+  files:
+    - WEB-INF/**/*
+  name: artifact
