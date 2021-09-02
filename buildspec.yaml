@@ -15,7 +15,7 @@ phases:
   post_build:
     commands:
       - echo Build completed on `date`
-      - unzip Flash_Back.war -d artifact/
+      - unzip flashback.war -d artifact/
       - mv artifact/WEB-INF WEB-INF
 artifacts:
   files:
