@@ -1,12 +1,8 @@
 package com.revature.flash_back_api.web.dtos;
 
-<<<<<<< HEAD
+
 import com.revature.flash_back_api.models.documents.Users;
-
 import java.util.Objects;
-
-=======
-
 import io.jsonwebtoken.Claims;
 
 import java.util.Objects;
@@ -26,10 +22,10 @@ public class Principal {
         this.username = subject.getUsername();
     }
 
-//    Principal(Claims jwtClaims) {
-//        this.id = jwtClaims.getId();
-//        this.username = jwtClaims.getSubject();
-//    }
+    public Principal(Claims jwtClaims) {
+        this.id = jwtClaims.getId();
+        this.username = jwtClaims.getSubject();
+    }
 
 
     public String getId() {

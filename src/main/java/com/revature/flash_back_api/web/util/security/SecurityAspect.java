@@ -1,5 +1,6 @@
 package com.revature.flash_back_api.web.util.security;
 
+import com.revature.flash_back_api.util.exceptions.AuthorizationException;
 import com.revature.flash_back_api.web.dtos.Principal;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
@@ -49,7 +50,7 @@ public class SecurityAspect {
 
         // TODO: Make Authorization Exception and place it here!
         if (!allowedRoles.contains(principal.getRole())) {
-//            throw new "A forbidden request was made by: " + principal.getUsername()
+            throw new AuthorizationException("A forbidden request was made by: " + principal.getUsername());
         }
 
         return pjp.proceed();
