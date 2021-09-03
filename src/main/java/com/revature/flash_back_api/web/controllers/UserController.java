@@ -20,6 +20,7 @@ public class UserController {
     }
 
 
+    //for registering a new user
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     public Principal registerNewUser(@RequestBody User newUser) {
@@ -27,11 +28,12 @@ public class UserController {
 
     }
 
-
+    //for getting a list of all users
     @GetMapping(produces = "application/json")
     public List<UserDTO> getAllUsers(){
         return usersService.findAll();
-
     }
+
+
 
 }
