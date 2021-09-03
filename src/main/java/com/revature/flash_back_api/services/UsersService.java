@@ -10,6 +10,7 @@ import com.revature.flash_back_api.web.dtos.UserDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -47,8 +48,10 @@ public class UsersService {
             throw new ResourcePersistenceException("Provided username is already taken!");
         }
 
-
+        newUser.setRole("user");
         newUser.setPassword(newUser.getPassword());
+        newUser.setUserId(newUser.getUserId());
+        newUser.setRegistrationDateTime(LocalDateTime.now());
 
         return usersRepo.save(newUser);
 
