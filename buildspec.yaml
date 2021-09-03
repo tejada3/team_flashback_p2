@@ -6,18 +6,12 @@ phases:
       java: corretto8
   pre_build:
     commands:
-      - aws s3 cp s3://jose-robert-student-management/properties.properties ./src/main/resources/properties.properties
+      - aws s3 cp s3://jose-robert-student-management/application.yml ./src/main/resources/application.yml
   build:
     commands:
       - echo Build started on `date`
       - mvn package
-      - mv target/*.war ./flashback.war
-  post_build:
-    commands:
-      - echo Build completed on `date`
-      - unzip flashback.war -d artifact/
-      - mv artifact/WEB-INF WEB-INF
+
 artifacts:
   files:
-    - WEB-INF/**/*
-  name: artifact
+    - target/*.jar
