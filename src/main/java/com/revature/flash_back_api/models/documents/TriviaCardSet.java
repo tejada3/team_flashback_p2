@@ -19,9 +19,6 @@ public class TriviaCardSet {
         this.topic = topic;
     }
 
-    // #TODO generate getters+setters, etc.
-
-
     public String getTriviaCardSetId() {
         return triviaCardSetId;
     }

@@ -18,8 +18,6 @@ public class ThreadComment {
     private String content;
     private LocalDateTime timestamp;
 
-    // #TODO generate constructor
-
     public ThreadComment(String threadId, String userId, String content, LocalDateTime timestamp) {
         this.threadId = threadId;
         this.userId = userId;

@@ -29,9 +29,6 @@ public class TriviaCard {
         this.answers = answers;
     }
 
-    // #TODO update getters/setters / equals, hashCode and toString
-
-
     public String getCardId() {
         return cardId;
     }

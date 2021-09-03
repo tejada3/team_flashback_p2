@@ -23,9 +23,6 @@ public class Threads {
         this.threadContent = threadContent;
     }
 
-    //#TODO update getters and setters
-
-
     public String getThreadId() {
         return threadId;
     }
