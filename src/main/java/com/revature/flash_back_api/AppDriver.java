@@ -9,7 +9,7 @@ import org.springframework.data.mongodb.repository.config.EnableMongoRepositorie
 @EnableAspectJAutoProxy(proxyTargetClass = true)
 @EnableMongoRepositories(basePackages = "com.revature.flash_back_api.models.repos")
 public class AppDriver {
-    public static void main(String[] args) {
+    public static void main(String[] args) {;
         SpringApplication.run(AppDriver.class, args);
     }
 }

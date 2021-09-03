@@ -69,7 +69,10 @@ public class UsersService {
             throw new AuthenticationException("Invalid credentials provided!");
         }
 
-        return new Principal(authUser);
+
+        Principal newP = new Principal(authUser);
+        newP.setId(authUser.getUserId());
+        return newP;
 
     }
 
