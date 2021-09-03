@@ -10,7 +10,8 @@ spring:
       port: 27017
       database: p2
       username: myUserAdmin
-      password: Password123
+      password: B6UzuQThhpvURtXT
+
 
 
 encrypt:

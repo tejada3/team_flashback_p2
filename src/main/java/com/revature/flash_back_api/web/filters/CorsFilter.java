@@ -1,6 +1,8 @@
 package com.revature.flash_back_api.web.filters;
 
 
+import org.springframework.stereotype.Component;
+
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebFilter;
@@ -10,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 @WebFilter("/*")
+@Component
 public class CorsFilter extends HttpFilter {
 
     @Override
@@ -19,6 +22,8 @@ public class CorsFilter extends HttpFilter {
         res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, PATCH, DELETE");
         res.setHeader("Access-Control-Allow-Headers", "Content-Type, Authorization");
         res.setHeader("Access-Control-Expose-Headers", "Authorization");
+        System.out.println("Filtered incoming request");
         chain.doFilter(req, res);
+
     }
 }
