@@ -1,4 +1,4 @@
-package com.revature.flash_back_api.controllers;
+package com.revature.flash_back_api.web.controllers;
 
 import com.revature.flash_back_api.models.documents.User;
 import com.revature.flash_back_api.services.UsersService;
