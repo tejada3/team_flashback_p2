@@ -20,7 +20,7 @@ import java.util.Objects;
 public class User {
 
 
-    private String userId;
+    private String id;
 
     @NotEmpty
     private String firstName;
@@ -75,12 +75,12 @@ public class User {
         this.registrationDateTime = registrationDateTime;
     }
 
-    public String getUserId() {
-        return userId;
+    public String getId() {
+        return id;
     }
 
-    public void setUserId(String userId) {
-        this.userId = userId;
+    public void setId(String userId) {
+        this.id = id;
     }
 
     public String getFirstName() {
@@ -144,18 +144,18 @@ public class User {
         if (this == o) return true;
         if (!(o instanceof User)) return false;
         User user = (User) o;
-        return getTotalScore() == user.getTotalScore() && getUserId().equals(user.getUserId()) && getFirstName().equals(user.getFirstName()) && getLastName().equals(user.getLastName()) && getEmail().equals(user.getEmail()) && getUsername().equals(user.getUsername()) && getPassword().equals(user.getPassword()) && Objects.equals(getRole(), user.getRole()) && Objects.equals(registrationDateTime, user.registrationDateTime);
+        return getTotalScore() == user.getTotalScore() && getId().equals(user.getId()) && getFirstName().equals(user.getFirstName()) && getLastName().equals(user.getLastName()) && getEmail().equals(user.getEmail()) && getUsername().equals(user.getUsername()) && getPassword().equals(user.getPassword()) && Objects.equals(getRole(), user.getRole()) && Objects.equals(registrationDateTime, user.registrationDateTime);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getUserId(), getFirstName(), getLastName(), getEmail(), getUsername(), getPassword(), getRole(), getTotalScore(), registrationDateTime);
+        return Objects.hash(getId(), getFirstName(), getLastName(), getEmail(), getUsername(), getPassword(), getRole(), getTotalScore(), registrationDateTime);
     }
 
     @Override
     public String toString() {
         return "Users{" +
-                "userId='" + userId + '\'' +
+                "id='" + id + '\'' +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +

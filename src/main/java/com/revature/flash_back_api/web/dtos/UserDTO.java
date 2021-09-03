@@ -7,7 +7,7 @@ import java.util.Objects;
 public class UserDTO {
 
 
-    private String userId;
+    private String id;
     private String firstName;
     private String lastName;
     private String email;
@@ -18,7 +18,7 @@ public class UserDTO {
 
 
     public UserDTO(User user){
-        this.userId = user.getUserId();
+        this.id = user.getId();
         this.firstName = user.getFirstName();
         this.lastName = user.getLastName();
         this.email = user.getEmail();
@@ -36,12 +36,12 @@ public class UserDTO {
         this.registrationDateTime = registrationDateTime;
     }
 
-    public String getUserId() {
-        return userId;
+    public String getId() {
+        return id;
     }
 
-    public void setUserId(String userId) {
-        this.userId = userId;
+    public void getId(String id) {
+        this.id = id;
     }
 
     public String getFirstName() {
@@ -99,19 +99,19 @@ public class UserDTO {
         if (this == o) return true;
         if (!(o instanceof UserDTO)) return false;
         UserDTO userDTO = (UserDTO) o;
-        return getTotalScore() == userDTO.getTotalScore() && getUserId().equals(userDTO.getUserId()) && getFirstName().equals(userDTO.getFirstName()) && getLastName().equals(userDTO.getLastName()) && getEmail().equals(userDTO.getEmail()) && getUsername().equals(userDTO.getUsername()) && getRole().equals(userDTO.getRole()) && getRegistrationDateTime().equals(userDTO.getRegistrationDateTime());
+        return getTotalScore() == userDTO.getTotalScore() && getId().equals(userDTO.getId()) && getFirstName().equals(userDTO.getFirstName()) && getLastName().equals(userDTO.getLastName()) && getEmail().equals(userDTO.getEmail()) && getUsername().equals(userDTO.getUsername()) && getRole().equals(userDTO.getRole()) && getRegistrationDateTime().equals(userDTO.getRegistrationDateTime());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getUserId(), getFirstName(), getLastName(), getEmail(), getUsername(), getRole(), getTotalScore(), getRegistrationDateTime());
+        return Objects.hash(getId(), getFirstName(), getLastName(), getEmail(), getUsername(), getRole(), getTotalScore(), getRegistrationDateTime());
     }
 
 
     @Override
     public String toString() {
         return "UserDTO{" +
-                "userId='" + userId + '\'' +
+                "id='" + id + '\'' +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +

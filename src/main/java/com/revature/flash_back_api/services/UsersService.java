@@ -50,7 +50,6 @@ public class UsersService {
 
         newUser.setRole("user");
         newUser.setPassword(newUser.getPassword());
-        newUser.setUserId(newUser.getUserId());
         newUser.setRegistrationDateTime(LocalDateTime.now());
 
         return usersRepo.save(newUser);

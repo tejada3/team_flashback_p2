@@ -15,7 +15,7 @@ public class Principal {
     public Principal() { super(); }
 
     public Principal(User subject) {
-        this.id = subject.getUserId();
+        this.id = subject.getId();
         this.username = subject.getUsername();
         this.role = subject.getRole();
     }
