@@ -31,6 +31,7 @@ public class TriviaCard {
 
     // #TODO update getters/setters / equals, hashCode and toString
 
+
     public String getCardId() {
         return cardId;
     }
@@ -39,6 +40,13 @@ public class TriviaCard {
         this.cardId = cardId;
     }
 
+    public String getTriviaCardSetId() {
+        return triviaCardSetId;
+    }
+
+    public void setTriviaCardSetId(String triviaCardSetId) {
+        this.triviaCardSetId = triviaCardSetId;
+    }
 
     public String getQuestion() {
         return question;
@@ -56,14 +64,6 @@ public class TriviaCard {
         this.correctAnswer = correctAnswer;
     }
 
-    public String getPoints() {
-        return points;
-    }
-
-    public void setPoints(String points) {
-        this.points = points;
-    }
-
     public List<String> getAnswers() {
         return answers;
     }
@@ -72,19 +72,26 @@ public class TriviaCard {
         this.answers = answers;
     }
 
+    public String getPoints() {
+        return points;
+    }
+
+    public void setPoints(String points) {
+        this.points = points;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof TriviaCard)) return false;
+        if (o == null || getClass() != o.getClass()) return false;
         TriviaCard that = (TriviaCard) o;
-        return getCardId().equals(that.getCardId()) && triviaCardSetId.equals(that.triviaCardSetId) && Objects.equals(getQuestion(), that.getQuestion()) && Objects.equals(getCorrectAnswer(), that.getCorrectAnswer()) && Objects.equals(getAnswers(), that.getAnswers()) && Objects.equals(getPoints(), that.getPoints());
+        return Objects.equals(cardId, that.cardId) && Objects.equals(triviaCardSetId, that.triviaCardSetId) && Objects.equals(question, that.question) && Objects.equals(correctAnswer, that.correctAnswer) && Objects.equals(answers, that.answers) && Objects.equals(points, that.points);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getCardId(), triviaCardSetId, getQuestion(), getCorrectAnswer(), getAnswers(), getPoints());
+        return Objects.hash(cardId, triviaCardSetId, question, correctAnswer, answers, points);
     }
-
 
     @Override
     public String toString() {

@@ -59,9 +59,6 @@ public class User {
     }
 
 
-    // #TODO update getters/setters, equals, toString, hashCode
-
-
     public LocalDateTime getRegistrationDateTime() {
         return registrationDateTime;
     }
@@ -155,7 +152,6 @@ public class User {
                 ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +
                 ", username='" + username + '\'' +
-                ", password='" + password + '\'' +
                 ", role='" + role + '\'' +
                 ", totalScore=" + totalScore +
                 ", registrationDateTime=" + registrationDateTime +
