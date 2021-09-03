@@ -38,7 +38,7 @@ public class User {
     private String password;
 
     private String role;
-    private int totalScore  = 0;
+    private int totalScore = 0;
     private LocalDateTime registrationDateTime;
 
 
@@ -48,13 +48,21 @@ public class User {
     super();
     };
 
-    public User(String firstName, String lastName, String email, String username, String password, String role, LocalDateTime registrationDateTime){
+    public User(String firstName, String lastName, String email, String username, String password){
         this.firstName = firstName;
         this.lastName =  lastName;
         this.email = email;
         this.username = username;
         this.password = password;
+    }
+
+    public User(String firstName, String lastName, String email, String username, String password, String role){
+        this(firstName, lastName, email, username, password);
         this.role = role;
+    }
+
+    public User(String firstName, String lastName, String email, String username, String password, String role, LocalDateTime registrationDateTime){
+        this(firstName, lastName, email, username, password, role);
         this.registrationDateTime = registrationDateTime;
     }
 
