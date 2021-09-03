@@ -23,8 +23,6 @@ public class Threads {
         this.threadContent = threadContent;
     }
 
-    //#TODO update getters and setters
-
     public String getThreadId() {
         return threadId;
     }
@@ -33,12 +31,20 @@ public class Threads {
         this.threadId = threadId;
     }
 
-    public String getUserID() {
+    public String getUserId() {
         return userId;
     }
 
-    public void setUserID(String userID) {
-        this.userId = userID;
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
+
+    public String getSubforumId() {
+        return subforumId;
+    }
+
+    public void setSubforumId(String subforumId) {
+        this.subforumId = subforumId;
     }
 
     public String getThreadTitle() {
@@ -57,26 +63,25 @@ public class Threads {
         this.threadContent = threadContent;
     }
 
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Threads)) return false;
-        Threads thread = (Threads) o;
-        return getThreadId().equals(thread.getThreadId()) && getUserID().equals(thread.getUserID()) && getThreadTitle().equals(thread.getThreadTitle()) && getThreadContent().equals(thread.getThreadContent());
+        if (o == null || getClass() != o.getClass()) return false;
+        Threads threads = (Threads) o;
+        return Objects.equals(threadId, threads.threadId) && Objects.equals(userId, threads.userId) && Objects.equals(subforumId, threads.subforumId) && Objects.equals(threadTitle, threads.threadTitle) && Objects.equals(threadContent, threads.threadContent);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getThreadId(), getUserID(), getThreadTitle(), getThreadContent());
+        return Objects.hash(threadId, userId, subforumId, threadTitle, threadContent);
     }
-
 
     @Override
     public String toString() {
-        return "Thread{" +
+        return "Threads{" +
                 "threadId='" + threadId + '\'' +
-                ", userID='" + userId + '\'' +
+                ", userId='" + userId + '\'' +
+                ", subforumId='" + subforumId + '\'' +
                 ", threadTitle='" + threadTitle + '\'' +
                 ", threadContent='" + threadContent + '\'' +
                 '}';

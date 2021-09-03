@@ -38,7 +38,7 @@ public class User {
     private String password;
 
     private String role;
-    private int totalScore  = 0;
+    private int totalScore = 0;
     private LocalDateTime registrationDateTime;
 
 
@@ -48,18 +48,23 @@ public class User {
     super();
     };
 
-    public User(String firstName, String lastName, String email, String username, String password, String role, LocalDateTime registrationDateTime){
+    public User(String firstName, String lastName, String email, String username, String password){
         this.firstName = firstName;
         this.lastName =  lastName;
         this.email = email;
         this.username = username;
         this.password = password;
-        this.role = role;
-        this.registrationDateTime = registrationDateTime;
     }
 
+    public User(String firstName, String lastName, String email, String username, String password, String role){
+        this(firstName, lastName, email, username, password);
+        this.role = role;
+    }
 
-    // #TODO update getters/setters, equals, toString, hashCode
+    public User(String firstName, String lastName, String email, String username, String password, String role, LocalDateTime registrationDateTime){
+        this(firstName, lastName, email, username, password, role);
+        this.registrationDateTime = registrationDateTime;
+    }
 
 
     public LocalDateTime getRegistrationDateTime() {
@@ -155,7 +160,6 @@ public class User {
                 ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +
                 ", username='" + username + '\'' +
-                ", password='" + password + '\'' +
                 ", role='" + role + '\'' +
                 ", totalScore=" + totalScore +
                 ", registrationDateTime=" + registrationDateTime +

@@ -14,15 +14,16 @@ public class Principal {
 
     public Principal() { super(); }
 
-
     public Principal(User subject) {
         this.id = subject.getUserId();
         this.username = subject.getUsername();
+        this.role = subject.getRole();
     }
 
     public Principal(Claims jwtClaims) {
         this.id = jwtClaims.getId();
         this.username = jwtClaims.getSubject();
+        this.role = jwtClaims.get("role", String.class);
     }
 
 
