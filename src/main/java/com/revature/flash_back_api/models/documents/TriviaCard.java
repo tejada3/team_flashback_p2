@@ -12,7 +12,8 @@ import java.util.Objects;
 @Component
 @Document(collection = "triviaCards")
 public class TriviaCard {
-    private String cardId;
+
+    private String id;
     private String triviaCardSetId;
     private String question;
     private String correctAnswer;
@@ -29,12 +30,12 @@ public class TriviaCard {
         this.answers = answers;
     }
 
-    public String getCardId() {
-        return cardId;
+    public String getId() {
+        return id;
     }
 
-    public void setCardId(String cardId) {
-        this.cardId = cardId;
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getTriviaCardSetId() {
@@ -82,18 +83,18 @@ public class TriviaCard {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         TriviaCard that = (TriviaCard) o;
-        return Objects.equals(cardId, that.cardId) && Objects.equals(triviaCardSetId, that.triviaCardSetId) && Objects.equals(question, that.question) && Objects.equals(correctAnswer, that.correctAnswer) && Objects.equals(answers, that.answers) && Objects.equals(points, that.points);
+        return Objects.equals(id, that.id) && Objects.equals(triviaCardSetId, that.triviaCardSetId) && Objects.equals(question, that.question) && Objects.equals(correctAnswer, that.correctAnswer) && Objects.equals(answers, that.answers) && Objects.equals(points, that.points);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(cardId, triviaCardSetId, question, correctAnswer, answers, points);
+        return Objects.hash(id, triviaCardSetId, question, correctAnswer, answers, points);
     }
 
     @Override
     public String toString() {
         return "TriviaCard{" +
-                "cardId='" + cardId + '\'' +
+                "id='" + id + '\'' +
                 ", triviaCardSetId='" + triviaCardSetId + '\'' +
                 ", question='" + question + '\'' +
                 ", correctAnswer='" + correctAnswer + '\'' +

@@ -12,7 +12,7 @@ import java.util.Objects;
 @Document(collection = "threadComments")
 public class ThreadComment {
 
-    private String threadCommentId;
+    private String id;
     private String threadId;
     private String userId;
     private String content;
@@ -25,12 +25,12 @@ public class ThreadComment {
         this.timestamp = timestamp;
     }
 
-    public String getThreadCommentId() {
-        return threadCommentId;
+    public String getId() {
+        return id;
     }
 
-    public void setThreadCommentId(String threadCommentId) {
-        this.threadCommentId = threadCommentId;
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getThreadId() {
@@ -70,18 +70,18 @@ public class ThreadComment {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         ThreadComment that = (ThreadComment) o;
-        return Objects.equals(threadCommentId, that.threadCommentId) && Objects.equals(threadId, that.threadId) && Objects.equals(userId, that.userId) && Objects.equals(content, that.content) && Objects.equals(timestamp, that.timestamp);
+        return Objects.equals(id, that.id) && Objects.equals(threadId, that.threadId) && Objects.equals(userId, that.userId) && Objects.equals(content, that.content) && Objects.equals(timestamp, that.timestamp);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(threadCommentId, threadId, userId, content, timestamp);
+        return Objects.hash(id, threadId, userId, content, timestamp);
     }
 
     @Override
     public String toString() {
         return "ThreadComment{" +
-                "threadCommentId='" + threadCommentId + '\'' +
+                "id='" + id + '\'' +
                 ", threadId='" + threadId + '\'' +
                 ", userId='" + userId + '\'' +
                 ", content='" + content + '\'' +

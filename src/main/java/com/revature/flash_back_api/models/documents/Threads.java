@@ -10,7 +10,8 @@ import java.util.Objects;
 @Component
 @Document(collection = "threads")
 public class Threads {
-    private String threadId;
+
+    private String id;
     private String userId;
     private String subforumId;
     private String threadTitle;
@@ -23,12 +24,12 @@ public class Threads {
         this.threadContent = threadContent;
     }
 
-    public String getThreadId() {
-        return threadId;
+    public String getId() {
+        return id;
     }
 
-    public void setThreadId(String threadId) {
-        this.threadId = threadId;
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getUserId() {
@@ -68,18 +69,18 @@ public class Threads {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Threads threads = (Threads) o;
-        return Objects.equals(threadId, threads.threadId) && Objects.equals(userId, threads.userId) && Objects.equals(subforumId, threads.subforumId) && Objects.equals(threadTitle, threads.threadTitle) && Objects.equals(threadContent, threads.threadContent);
+        return Objects.equals(id, threads.id) && Objects.equals(userId, threads.userId) && Objects.equals(subforumId, threads.subforumId) && Objects.equals(threadTitle, threads.threadTitle) && Objects.equals(threadContent, threads.threadContent);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(threadId, userId, subforumId, threadTitle, threadContent);
+        return Objects.hash(id, userId, subforumId, threadTitle, threadContent);
     }
 
     @Override
     public String toString() {
         return "Threads{" +
-                "threadId='" + threadId + '\'' +
+                "id='" + id + '\'' +
                 ", userId='" + userId + '\'' +
                 ", subforumId='" + subforumId + '\'' +
                 ", threadTitle='" + threadTitle + '\'' +

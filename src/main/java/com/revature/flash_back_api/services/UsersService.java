@@ -71,7 +71,7 @@ public class UsersService {
 
 
         Principal newP = new Principal(authUser);
-        newP.setId(authUser.getUserId());
+        newP.setId(authUser.getId());
         return newP;
 
     }

@@ -41,9 +41,6 @@ public class User {
     private int totalScore = 0;
     private LocalDateTime registrationDateTime;
 
-
-
-
     public User(){
     super();
     };

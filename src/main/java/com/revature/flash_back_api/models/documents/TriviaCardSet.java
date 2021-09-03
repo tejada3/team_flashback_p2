@@ -11,7 +11,7 @@ import java.util.Objects;
 @Document(collection = "triviaCardSets")
 public class TriviaCardSet {
 
-    private String triviaCardSetId;
+    private String id;
     private String topic;
     private int cardCount = 0;
 
@@ -19,12 +19,12 @@ public class TriviaCardSet {
         this.topic = topic;
     }
 
-    public String getTriviaCardSetId() {
-        return triviaCardSetId;
+    public String getId() {
+        return id;
     }
 
-    public void setTriviaCardSetId(String triviaCardSetId) {
-        this.triviaCardSetId = triviaCardSetId;
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getTopic() {
@@ -48,18 +48,18 @@ public class TriviaCardSet {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         TriviaCardSet that = (TriviaCardSet) o;
-        return cardCount == that.cardCount && Objects.equals(triviaCardSetId, that.triviaCardSetId) && Objects.equals(topic, that.topic);
+        return cardCount == that.cardCount && Objects.equals(id, that.id) && Objects.equals(topic, that.topic);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(triviaCardSetId, topic, cardCount);
+        return Objects.hash(id, topic, cardCount);
     }
 
     @Override
     public String toString() {
         return "TriviaCardSet{" +
-                "triviaCardSetId='" + triviaCardSetId + '\'' +
+                "id='" + id + '\'' +
                 ", topic='" + topic + '\'' +
                 ", cardCount=" + cardCount +
                 '}';

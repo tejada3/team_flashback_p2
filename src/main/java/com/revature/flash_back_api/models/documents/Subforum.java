@@ -12,7 +12,7 @@ import java.util.Objects;
 @Document(collection = "subforums")
 public class Subforum {
 
-    private String subforumId;
+    private String id;
     private String subforumTitle;
     private int threadCount = 0;
 
@@ -20,12 +20,12 @@ public class Subforum {
         this.subforumTitle = subforumTitle;
     }
 
-    public String getSubforumId() {
-        return subforumId;
+    public String getId() {
+        return id;
     }
 
-    public void setSubforumId(String subforumId) {
-        this.subforumId = subforumId;
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getSubforumTitle() {
@@ -49,18 +49,18 @@ public class Subforum {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Subforum subforum = (Subforum) o;
-        return threadCount == subforum.threadCount && Objects.equals(subforumId, subforum.subforumId) && Objects.equals(subforumTitle, subforum.subforumTitle);
+        return threadCount == subforum.threadCount && Objects.equals(id, subforum.id) && Objects.equals(subforumTitle, subforum.subforumTitle);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(subforumId, subforumTitle, threadCount);
+        return Objects.hash(id, subforumTitle, threadCount);
     }
 
     @Override
     public String toString() {
         return "Subforum{" +
-                "subforumId='" + subforumId + '\'' +
+                "id='" + id + '\'' +
                 ", subforumTitle='" + subforumTitle + '\'' +
                 ", threadCount=" + threadCount +
                 '}';
