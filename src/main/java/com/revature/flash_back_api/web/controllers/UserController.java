@@ -31,8 +31,9 @@ public class UserController {
     //For registering a new user
     @PostMapping("/register")
     @ResponseStatus(HttpStatus.CREATED)
-    public Principal register(@RequestBody User newUser) {
-        return new Principal(usersService.register(newUser));
+    public UserDTO register(@RequestBody User newUser) {
+        ///changed this to return a user DTO instead of principal
+        return new UserDTO(usersService.register(newUser));
 
     }
 
