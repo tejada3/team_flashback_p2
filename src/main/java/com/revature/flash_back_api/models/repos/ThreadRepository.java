@@ -7,4 +7,8 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface ThreadRepository extends MongoRepository<Threads, String> {
     //#TODO finish this interface
+
+    Threads findThreadsById(String id);
+    Threads findThreadsBySubforumId(String Subforumid);
+    Threads findThreadsByThreadTitle(String title);
 }

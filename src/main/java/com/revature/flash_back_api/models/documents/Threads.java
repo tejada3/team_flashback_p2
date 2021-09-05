@@ -17,6 +17,8 @@ public class Threads {
     private String threadTitle;
     private String threadContent;
 
+    public Threads(){super();}
+
     public Threads(String userId, String subforumId, String threadTitle, String threadContent) {
         this.userId = userId;
         this.subforumId = subforumId;
