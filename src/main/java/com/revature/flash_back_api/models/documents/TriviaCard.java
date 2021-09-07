@@ -1,10 +1,19 @@
 package com.revature.flash_back_api.models.documents;
 
+import org.springframework.context.annotation.Scope;
+import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.stereotype.Component;
+
 import java.util.List;
 import java.util.Objects;
 
+
+@Scope("prototype")
+@Component
+@Document(collection = "triviaCards")
 public class TriviaCard {
-    private String cardId;
+
+    private String id;
     private String triviaCardSetId;
     private String question;
     private String correctAnswer;
@@ -21,16 +30,21 @@ public class TriviaCard {
         this.answers = answers;
     }
 
-    // #TODO update getters/setters / equals, hashCode and toString
-
-    public String getCardId() {
-        return cardId;
+    public String getId() {
+        return id;
     }
 
-    public void setCardId(String cardId) {
-        this.cardId = cardId;
+    public void setId(String id) {
+        this.id = id;
     }
 
+    public String getTriviaCardSetId() {
+        return triviaCardSetId;
+    }
+
+    public void setTriviaCardSetId(String triviaCardSetId) {
+        this.triviaCardSetId = triviaCardSetId;
+    }
 
     public String getQuestion() {
         return question;
@@ -48,14 +62,6 @@ public class TriviaCard {
         this.correctAnswer = correctAnswer;
     }
 
-    public String getPoints() {
-        return points;
-    }
-
-    public void setPoints(String points) {
-        this.points = points;
-    }
-
     public List<String> getAnswers() {
         return answers;
     }
@@ -64,24 +70,31 @@ public class TriviaCard {
         this.answers = answers;
     }
 
+    public String getPoints() {
+        return points;
+    }
+
+    public void setPoints(String points) {
+        this.points = points;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof TriviaCard)) return false;
+        if (o == null || getClass() != o.getClass()) return false;
         TriviaCard that = (TriviaCard) o;
-        return getCardId().equals(that.getCardId()) && triviaCardSetId.equals(that.triviaCardSetId) && Objects.equals(getQuestion(), that.getQuestion()) && Objects.equals(getCorrectAnswer(), that.getCorrectAnswer()) && Objects.equals(getAnswers(), that.getAnswers()) && Objects.equals(getPoints(), that.getPoints());
+        return Objects.equals(id, that.id) && Objects.equals(triviaCardSetId, that.triviaCardSetId) && Objects.equals(question, that.question) && Objects.equals(correctAnswer, that.correctAnswer) && Objects.equals(answers, that.answers) && Objects.equals(points, that.points);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getCardId(), triviaCardSetId, getQuestion(), getCorrectAnswer(), getAnswers(), getPoints());
+        return Objects.hash(id, triviaCardSetId, question, correctAnswer, answers, points);
     }
-
 
     @Override
     public String toString() {
         return "TriviaCard{" +
-                "cardId='" + cardId + '\'' +
+                "id='" + id + '\'' +
                 ", triviaCardSetId='" + triviaCardSetId + '\'' +
                 ", question='" + question + '\'' +
                 ", correctAnswer='" + correctAnswer + '\'' +

@@ -1,25 +1,19 @@
-package com.revature.flash_back_api.models.documents;
+package com.revature.flash_back_api.web.dtos;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Scope;
-import org.springframework.data.mongodb.core.mapping.Document;
-import org.springframework.stereotype.Component;
+import com.revature.flash_back_api.models.documents.TriviaCardSet;
 
 import java.util.Objects;
 
-@Scope("prototype")
-@Component
-@Document(collection = "triviaCardSets")
-public class TriviaCardSet {
+public class TriviaCardSetDTO {
 
     private String id;
     private String topic;
-    private int cardCount = 0;
+    private int cardCount;
 
-    public TriviaCardSet(){super();}
-
-    public TriviaCardSet(String topic){
-        this.topic = topic;
+    public TriviaCardSetDTO(TriviaCardSet triviaCardSet){
+        this.id = triviaCardSet.getId();
+        this.topic = triviaCardSet.getTopic();
+        this.cardCount = triviaCardSet.getCardCount();
     }
 
     public String getId() {
@@ -50,7 +44,7 @@ public class TriviaCardSet {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        TriviaCardSet that = (TriviaCardSet) o;
+        TriviaCardSetDTO that = (TriviaCardSetDTO) o;
         return cardCount == that.cardCount && Objects.equals(id, that.id) && Objects.equals(topic, that.topic);
     }
 
@@ -61,7 +55,7 @@ public class TriviaCardSet {
 
     @Override
     public String toString() {
-        return "TriviaCardSet{" +
+        return "TriviaCardSetDTO{" +
                 "id='" + id + '\'' +
                 ", topic='" + topic + '\'' +
                 ", cardCount=" + cardCount +

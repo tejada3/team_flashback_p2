@@ -1,10 +1,14 @@
 package com.revature.flash_back_api.models.documents;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.apache.tomcat.jni.Local;
 import org.springframework.context.annotation.Scope;
+import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.stereotype.Component;
 
+import org.hibernate.validator.constraints.Length;
+
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotEmpty;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
@@ -12,42 +16,68 @@ import java.util.Objects;
 
 @Scope("prototype")
 @Component
-public class Users {
+@Document(collection = "users")
+public class User {
 
-    private String userId;
+
+    private String id;
+
+    @NotEmpty
     private String firstName;
+
+    @NotEmpty
     private String lastName;
+
+    @Email
     private String email;
+
+    @Length(min = 5, max = 15)
     private String username;
+
+    //TODO add constraints to password field here
     private String password;
+
     private String role;
-    private int totalScore  = 0;
+    private int totalScore = 0;
     private LocalDateTime registrationDateTime;
 
-    public Users(){
+    public User(){
     super();
     };
 
-
-    Users(String firstName, String lastName, String email, String username, String password, String role, LocalDateTime registrationDateTime){
+    public User(String firstName, String lastName, String email, String username, String password){
         this.firstName = firstName;
         this.lastName =  lastName;
         this.email = email;
         this.username = username;
         this.password = password;
+    }
+
+    public User(String firstName, String lastName, String email, String username, String password, String role){
+        this(firstName, lastName, email, username, password);
         this.role = role;
+    }
+
+    public User(String firstName, String lastName, String email, String username, String password, String role, LocalDateTime registrationDateTime){
+        this(firstName, lastName, email, username, password, role);
         this.registrationDateTime = registrationDateTime;
     }
 
-    // #TODO update getters/setters, equals, toString, hashCode
 
-
-    public String getUserId() {
-        return userId;
+    public LocalDateTime getRegistrationDateTime() {
+        return registrationDateTime;
     }
 
-    public void setUserId(String userId) {
-        this.userId = userId;
+    public void setRegistrationDateTime(LocalDateTime registrationDateTime) {
+        this.registrationDateTime = registrationDateTime;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String userId) {
+        this.id = id;
     }
 
     public String getFirstName() {
@@ -106,29 +136,27 @@ public class Users {
         this.totalScore = totalScore;
     }
 
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (!(o instanceof Users)) return false;
-        Users users = (Users) o;
-        return getTotalScore() == users.getTotalScore() && getUserId().equals(users.getUserId()) && getFirstName().equals(users.getFirstName()) && getLastName().equals(users.getLastName()) && getEmail().equals(users.getEmail()) && getUsername().equals(users.getUsername()) && getPassword().equals(users.getPassword()) && Objects.equals(getRole(), users.getRole()) && Objects.equals(registrationDateTime, users.registrationDateTime);
+        if (!(o instanceof User)) return false;
+        User user = (User) o;
+        return getTotalScore() == user.getTotalScore() && getId().equals(user.getId()) && getFirstName().equals(user.getFirstName()) && getLastName().equals(user.getLastName()) && getEmail().equals(user.getEmail()) && getUsername().equals(user.getUsername()) && getPassword().equals(user.getPassword()) && Objects.equals(getRole(), user.getRole()) && Objects.equals(registrationDateTime, user.registrationDateTime);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getUserId(), getFirstName(), getLastName(), getEmail(), getUsername(), getPassword(), getRole(), getTotalScore(), registrationDateTime);
+        return Objects.hash(getId(), getFirstName(), getLastName(), getEmail(), getUsername(), getPassword(), getRole(), getTotalScore(), registrationDateTime);
     }
 
     @Override
     public String toString() {
         return "Users{" +
-                "userId='" + userId + '\'' +
+                "id='" + id + '\'' +
                 ", firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +
                 ", username='" + username + '\'' +
-                ", password='" + password + '\'' +
                 ", role='" + role + '\'' +
                 ", totalScore=" + totalScore +
                 ", registrationDateTime=" + registrationDateTime +
