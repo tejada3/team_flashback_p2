@@ -10,7 +10,7 @@ public class TriviaDTO {
     private String setID;
     private String question;
     private String correctAnswer;
-    private String answers[];
+    private String[] answers;
     private String points;
 
 

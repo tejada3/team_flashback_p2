@@ -39,7 +39,7 @@ public class UserController {
     }
 
     //for getting a list of all users
-    @GetMapping(produces = "application/json")
+    @GetMapping(produces = "application/json", consumes = "application/json")
     public List<UserDTO> getAllUsers(){
         return usersService.findAll();
     }

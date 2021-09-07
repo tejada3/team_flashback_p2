@@ -15,8 +15,6 @@ import java.util.Objects;
 @Document(collection = "triviaCards")
 public class TriviaCard {
 
-    private static TriviaCardRepository cardRepo = null;
-
     private String id;
     private String triviaCardSetId;
     private String question;
@@ -26,42 +24,24 @@ public class TriviaCard {
 
     public TriviaCard(){ super();};
 
-    public TriviaCard(String id, String triviaCardSetId, String question, String correctAnswer, String points, List<String> answers) {
-        this.id = id;
+    public TriviaCard(String triviaCardSetId, String question, String correctAnswer, String points, List<String> answers) {
         this.triviaCardSetId = triviaCardSetId;
         this.question = question;
         this.correctAnswer = correctAnswer;
         this.points = points;
         this.answers = answers;
     }
+    public TriviaCard(String triviaCardSetId, String question, String correctAnswer, String points) {
+        this.triviaCardSetId = triviaCardSetId;
+        this.question = question;
+        this.correctAnswer = correctAnswer;
+        this.points = points;
+    }
 
     public TriviaCard(TriviaCard saveNewCard) {
     }
 
-    public static TriviaCard saveNewCard(TriviaCard newCard) {
 
-        if (!isCardValid(newCard)) {
-            throw new InvalidRequestException("Invalid user data provided!");
-        }
-
-        System.out.println(newCard);
-        return cardRepo.save(newCard);
-
-    }
-
-    //#TODO implement own validation checking
-    public static boolean isCardValid(TriviaCard card) {
-//        if ((card == null) ||
-//                (card.getId() == null || card.getId().trim().equals("")) ||
-//         (card.getTriviaCardSetId() == null || card.getTriviaCardSetId().trim().equals("")) ||
-//         (card.getQuestion() == null || card.getQuestion().trim().equals("")) ||
-//         (card.getCorrectAnswer() == null || card.getCorrectAnswer().trim().equals("")) ||
-//         (card.getAnswers() == null)) {return false;}
-//        else{
-//            return true;
-//        }
-        return true;
-    }
 
     public String getId() {
         return id;
