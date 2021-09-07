@@ -1,15 +1,11 @@
 package com.revature.flash_back_api.models.documents;
 
 import com.revature.flash_back_api.models.repos.TriviaCardRepository;
-import com.revature.flash_back_api.models.repos.UsersRepository;
 import com.revature.flash_back_api.util.exceptions.InvalidRequestException;
-import com.revature.flash_back_api.util.exceptions.ResourcePersistenceException;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.stereotype.Component;
 
-import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
 
@@ -30,7 +26,8 @@ public class TriviaCard {
 
     public TriviaCard(){ super();};
 
-    public TriviaCard(String triviaCardSetId, String question, String correctAnswer, String points, List<String> answers) {
+    public TriviaCard(String id, String triviaCardSetId, String question, String correctAnswer, String points, List<String> answers) {
+        this.id = id;
         this.triviaCardSetId = triviaCardSetId;
         this.question = question;
         this.correctAnswer = correctAnswer;
@@ -55,6 +52,7 @@ public class TriviaCard {
     //#TODO implement own validation checking
     public static boolean isCardValid(TriviaCard card) {
         if ((card == null) ||
+                (card.getId() == null || card.getId().trim().equals("")) ||
          (card.getTriviaCardSetId() == null || card.getTriviaCardSetId().trim().equals("")) ||
          (card.getQuestion() == null || card.getQuestion().trim().equals("")) ||
          (card.getCorrectAnswer() == null || card.getCorrectAnswer().trim().equals("")) ||

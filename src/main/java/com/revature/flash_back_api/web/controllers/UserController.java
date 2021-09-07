@@ -38,15 +38,6 @@ public class UserController {
 
     }
 
-    //For creating new cards
-    @PostMapping("/newtrivia")
-    @ResponseStatus(HttpStatus.CREATED)
-    public TriviaCard triviaCard(@RequestBody TriviaCard newCard) {
-
-        return new TriviaCard(TriviaCard.saveNewCard(newCard));
-
-    }
-
     //for getting a list of all users
     @GetMapping(produces = "application/json")
     public List<UserDTO> getAllUsers(){
