@@ -11,4 +11,6 @@ public interface ThreadRepository extends MongoRepository<Threads, String> {
     Threads findThreadsById(String id);
     Threads findThreadsBySubforumId(String Subforumid);
     Threads findThreadsByThreadTitle(String title);
+
+
 }
