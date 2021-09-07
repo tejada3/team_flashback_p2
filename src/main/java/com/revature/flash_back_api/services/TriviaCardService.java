@@ -4,8 +4,13 @@ package com.revature.flash_back_api.services;
 import com.revature.flash_back_api.models.documents.TriviaCard;
 import com.revature.flash_back_api.models.repos.TriviaCardRepository;
 import com.revature.flash_back_api.util.exceptions.InvalidRequestException;
+import com.revature.flash_back_api.web.dtos.TriviaCardSetDTO;
+import com.revature.flash_back_api.web.dtos.TriviaCardDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class TriviaCardService {
@@ -15,6 +20,13 @@ public class TriviaCardService {
     @Autowired
     TriviaCardService(TriviaCardRepository triviaCardRepository) {
         this.triviaCardRepository = triviaCardRepository;
+    }
+
+    public List<TriviaCardDTO> findAll(){
+        return triviaCardRepository.findAll()
+                .stream()
+                .map(TriviaCardDTO::new)
+                .collect(Collectors.toList());
     }
 
 

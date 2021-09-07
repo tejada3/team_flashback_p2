@@ -3,7 +3,7 @@ package com.revature.flash_back_api.web.dtos;
 import com.revature.flash_back_api.models.documents.TriviaCard;
 import java.util.Objects;
 
-public class TriviaDTO {
+public class TriviaCardDTO {
 
 
     private String cardID;
@@ -14,7 +14,7 @@ public class TriviaDTO {
     private String points;
 
 
-    public TriviaDTO(TriviaCard card){
+    public TriviaCardDTO(TriviaCard card){
         this.cardID = card.getId();
         this.setID = card.getId();
         this.question = card.getQuestion();

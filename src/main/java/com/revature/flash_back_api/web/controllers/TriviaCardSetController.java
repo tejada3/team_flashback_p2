@@ -19,7 +19,7 @@ public class TriviaCardSetController {
     }
 
     //for getting a list of all trivia card sets
-    @GetMapping(produces = "application/json")
+    @GetMapping(produces = "application/json", path = "/getAllSets")
     public List<TriviaCardSetDTO> getAllUsers(){
         return triviaCardSetsService.findAll();
     }
@@ -32,6 +32,7 @@ public class TriviaCardSetController {
     }
 
     //todo create successful deleteSet method
+    //Todo this will take in a parameter not a body
 //    @DeleteMapping("/delete-set")
 //    @ResponseStatus(HttpStatus.OK)
 //    public TriviaCardSetDTO deleteSet(@RequestBody TriviaCardSet triviaCardSet){
