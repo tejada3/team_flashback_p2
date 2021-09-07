@@ -75,8 +75,14 @@
             <plugins>
                 <plugin>
                     <groupId>org.springframework.boot</groupId>
-                    <artifactId>spring-boot-project</artifactId>
-                    <version>2.5.4</version>
+                    <artifactId>spring-boot-maven-plugin</artifactId>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                    </execution>
+                </executions>
                 </plugin>
             </plugins>
         </pluginManagement>

@@ -16,7 +16,9 @@ public class Subforum {
     private String subforumTitle;
     private int threadCount = 0;
 
-    Subforum(String subforumTitle){
+    public Subforum(){super();}
+
+    public Subforum(String subforumTitle){
         this.subforumTitle = subforumTitle;
     }
 
