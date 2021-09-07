@@ -5,6 +5,8 @@ import com.revature.flash_back_api.web.dtos.TriviaDTO;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+@RestController
+@RequestMapping("/users")
 public class TriviaCardController {
     //For creating new cards
     @PostMapping("/admintrivia")

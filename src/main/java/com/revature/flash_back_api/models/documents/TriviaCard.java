@@ -44,22 +44,23 @@ public class TriviaCard {
             throw new InvalidRequestException("Invalid user data provided!");
         }
 
-
+        System.out.println(newCard);
         return cardRepo.save(newCard);
 
     }
 
     //#TODO implement own validation checking
     public static boolean isCardValid(TriviaCard card) {
-        if ((card == null) ||
-                (card.getId() == null || card.getId().trim().equals("")) ||
-         (card.getTriviaCardSetId() == null || card.getTriviaCardSetId().trim().equals("")) ||
-         (card.getQuestion() == null || card.getQuestion().trim().equals("")) ||
-         (card.getCorrectAnswer() == null || card.getCorrectAnswer().trim().equals("")) ||
-         (card.getAnswers() == null)) {return false;}
-        else{
-            return true;
-        }
+//        if ((card == null) ||
+//                (card.getId() == null || card.getId().trim().equals("")) ||
+//         (card.getTriviaCardSetId() == null || card.getTriviaCardSetId().trim().equals("")) ||
+//         (card.getQuestion() == null || card.getQuestion().trim().equals("")) ||
+//         (card.getCorrectAnswer() == null || card.getCorrectAnswer().trim().equals("")) ||
+//         (card.getAnswers() == null)) {return false;}
+//        else{
+//            return true;
+//        }
+        return true;
     }
 
     public String getId() {
