@@ -1,5 +1,6 @@
 package com.revature.flash_back_api.web.controllers;
 
+import com.revature.flash_back_api.models.documents.TriviaCard;
 import com.revature.flash_back_api.models.documents.User;
 import com.revature.flash_back_api.services.UsersService;
 import com.revature.flash_back_api.web.dtos.Credentials;
@@ -34,6 +35,15 @@ public class UserController {
     public UserDTO register(@RequestBody User newUser) {
         ///changed this to return a user DTO instead of principal
         return new UserDTO(usersService.register(newUser));
+
+    }
+
+    //For creating new cards
+    @PostMapping("/newtrivia")
+    @ResponseStatus(HttpStatus.CREATED)
+    public TriviaCard triviaCard(@RequestBody TriviaCard newCard) {
+
+        return new TriviaCard(TriviaCard.saveNewCard(newCard));
 
     }
 

@@ -1,9 +1,15 @@
 package com.revature.flash_back_api.models.documents;
 
+import com.revature.flash_back_api.models.repos.TriviaCardRepository;
+import com.revature.flash_back_api.models.repos.UsersRepository;
+import com.revature.flash_back_api.util.exceptions.InvalidRequestException;
+import com.revature.flash_back_api.util.exceptions.ResourcePersistenceException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
 
@@ -12,6 +18,8 @@ import java.util.Objects;
 @Component
 @Document(collection = "triviaCards")
 public class TriviaCard {
+
+    private static TriviaCardRepository cardRepo = null;
 
     private String id;
     private String triviaCardSetId;
@@ -28,6 +36,32 @@ public class TriviaCard {
         this.correctAnswer = correctAnswer;
         this.points = points;
         this.answers = answers;
+    }
+
+    public TriviaCard(TriviaCard saveNewCard) {
+    }
+
+    public static TriviaCard saveNewCard(TriviaCard newCard) {
+
+        if (!isCardValid(newCard)) {
+            throw new InvalidRequestException("Invalid user data provided!");
+        }
+
+
+        return cardRepo.save(newCard);
+
+    }
+
+    //#TODO implement own validation checking
+    public static boolean isCardValid(TriviaCard card) {
+        if ((card == null) ||
+         (card.getTriviaCardSetId() == null || card.getTriviaCardSetId().trim().equals("")) ||
+         (card.getQuestion() == null || card.getQuestion().trim().equals("")) ||
+         (card.getCorrectAnswer() == null || card.getCorrectAnswer().trim().equals("")) ||
+         (card.getAnswers() == null)) {return false;}
+        else{
+            return true;
+        }
     }
 
     public String getId() {
@@ -77,6 +111,7 @@ public class TriviaCard {
     public void setPoints(String points) {
         this.points = points;
     }
+
 
     @Override
     public boolean equals(Object o) {
