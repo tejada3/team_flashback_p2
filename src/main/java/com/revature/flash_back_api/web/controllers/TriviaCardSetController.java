@@ -24,6 +24,22 @@ public class TriviaCardSetController {
         return triviaCardSetsService.findAll();
     }
 
+    //for creating a new Trivia Card Set
+    @PostMapping("/create-set")
+    @ResponseStatus(HttpStatus.CREATED)
+    public TriviaCardSetDTO createSet(@RequestBody TriviaCardSet newTriviaCardSet){
+        return new TriviaCardSetDTO(triviaCardSetsService.createSet(newTriviaCardSet));
+    }
+
+    //todo create successful deleteSet method
+//    @DeleteMapping("/delete-set")
+//    @ResponseStatus(HttpStatus.OK)
+//    public TriviaCardSetDTO deleteSet(@RequestBody TriviaCardSet triviaCardSet){
+//        return new TriviaCardSetDTO(triviaCardSetsService.deleteSet(triviaCardSet));
+//    }
+
+
+
 
 
 }
