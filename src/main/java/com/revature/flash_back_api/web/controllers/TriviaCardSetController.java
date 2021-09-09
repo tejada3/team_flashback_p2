@@ -33,11 +33,11 @@ public class TriviaCardSetController {
 
     //todo create successful deleteSet method
     //Todo this will take in a parameter not a body
-//    @DeleteMapping("/delete-set")
-//    @ResponseStatus(HttpStatus.OK)
-//    public TriviaCardSetDTO deleteSet(@RequestBody TriviaCardSet triviaCardSet){
-//        return new TriviaCardSetDTO(triviaCardSetsService.deleteSet(triviaCardSet));
-//    }
+    @DeleteMapping("/delete-set")
+    @ResponseStatus(HttpStatus.OK)
+    public TriviaCardSetDTO deleteSet(@RequestBody TriviaCardSet triviaCardSet){
+        return new TriviaCardSetDTO(triviaCardSetsService.deleteSet(triviaCardSet));
+    }
 
 
 
