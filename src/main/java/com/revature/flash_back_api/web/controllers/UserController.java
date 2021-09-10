@@ -1,5 +1,6 @@
 package com.revature.flash_back_api.web.controllers;
 
+import com.revature.flash_back_api.models.documents.TriviaCard;
 import com.revature.flash_back_api.models.documents.User;
 import com.revature.flash_back_api.services.UsersService;
 import com.revature.flash_back_api.web.dtos.Credentials;
@@ -38,7 +39,7 @@ public class UserController {
     }
 
     //for getting a list of all users
-    @GetMapping(produces = "application/json")
+    @GetMapping(produces = "application/json", path = "/getAllUsers")
     public List<UserDTO> getAllUsers(){
         return usersService.findAll();
     }

@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/trivia")
+@RequestMapping("/trivia/set")
 public class TriviaCardSetController {
 
     private TriviaCardSetsService triviaCardSetsService;
@@ -19,10 +19,34 @@ public class TriviaCardSetController {
     }
 
     //for getting a list of all trivia card sets
-    @GetMapping(produces = "application/json")
+    @GetMapping(produces = "application/json", path = "/getAllSets")
     public List<TriviaCardSetDTO> getAllUsers(){
         return triviaCardSetsService.findAll();
     }
+
+    //for creating a new Trivia Card Set
+    @PostMapping("/create-set")
+    @ResponseStatus(HttpStatus.CREATED)
+    public TriviaCardSetDTO createSet(@RequestBody TriviaCardSet newTriviaCardSet){
+        return new TriviaCardSetDTO(triviaCardSetsService.createSet(newTriviaCardSet));
+    }
+
+    //todo create successful deleteSet method
+    //Todo this will take in a parameter not a body
+    @DeleteMapping("/delete-set")
+    @ResponseStatus(HttpStatus.OK)
+    public TriviaCardSetDTO deleteSet(@RequestBody TriviaCardSet triviaCardSet){
+        return new TriviaCardSetDTO(triviaCardSetsService.deleteSet(triviaCardSet));
+    }
+
+    @PutMapping("/update-set")
+    @ResponseStatus(HttpStatus.OK)
+    public TriviaCardSetDTO updateSet(@RequestBody TriviaCardSet triviaCardSet){
+        return new TriviaCardSetDTO(triviaCardSetsService.updateSet(triviaCardSet));
+    }
+
+
+
 
 
 
