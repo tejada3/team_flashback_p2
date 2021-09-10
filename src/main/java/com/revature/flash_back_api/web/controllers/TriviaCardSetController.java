@@ -39,6 +39,13 @@ public class TriviaCardSetController {
         return new TriviaCardSetDTO(triviaCardSetsService.deleteSet(triviaCardSet));
     }
 
+    @PutMapping("/update-set")
+    @ResponseStatus(HttpStatus.OK)
+    public TriviaCardSetDTO updateSet(@RequestBody TriviaCardSet triviaCardSet){
+        return new TriviaCardSetDTO(triviaCardSetsService.updateSet(triviaCardSet));
+    }
+
+
 
 
 

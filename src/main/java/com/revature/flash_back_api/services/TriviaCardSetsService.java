@@ -41,7 +41,25 @@ public class TriviaCardSetsService {
     }
 
     public TriviaCardSet deleteSet(TriviaCardSet triviaCardSet){
-        return triviaCardSetsRepo.deleteTriviaCardSetByTopic(triviaCardSet.getTopic());
+        return triviaCardSetsRepo.deleteTriviaCardSetById(triviaCardSet.getId());
+    }
+
+    public TriviaCardSet updateSet(TriviaCardSet triviaCardSet){
+
+        TriviaCardSet updatedSet = new TriviaCardSet();
+
+        updatedSet.setId(triviaCardSet.getId());
+        updatedSet.setTopic(triviaCardSet.getTopic());
+        updatedSet.setCardCount(triviaCardSet.getCardCount());
+
+        if(!isTriviaCardSetValid(updatedSet)) {
+            throw new InvalidRequestException("Invalid Trivia Card Set data provided!");
+        }
+        if(triviaCardSetsRepo.findTriviaCardSetByTopic(updatedSet.getTopic()) != null) {
+            throw new ResourcePersistenceException("Provided topic is already taken!");
+        }
+
+        return triviaCardSetsRepo.save(updatedSet);
     }
 
     private boolean isTriviaCardSetValid(TriviaCardSet newTriviaCardSet) {
