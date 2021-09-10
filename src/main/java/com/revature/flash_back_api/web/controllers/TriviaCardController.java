@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/trivia")
+@RequestMapping("/trivia/card")
 public class TriviaCardController {
     //For creating new cards
 
@@ -18,6 +18,7 @@ public class TriviaCardController {
     public TriviaCardController(TriviaCardService triviaCardService){
         this.triviaCardService = triviaCardService;
     }
+
 
 
 
