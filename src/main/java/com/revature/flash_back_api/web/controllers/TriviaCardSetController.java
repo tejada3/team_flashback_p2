@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/trivia/set")
+@RequestMapping("/trivia/set")git
 public class TriviaCardSetController {
 
     private TriviaCardSetsService triviaCardSetsService;
