@@ -10,7 +10,8 @@ phases:
   build:
     commands:
       - echo Build started on `date`
-      - mvn repackage
+      - mvn clean install
+      - mvn package
 
 artifacts:
   files:
