@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface SubforumRepository extends MongoRepository<Subforum, String> {
-
+    Subforum findSubforumsBySubforumTitle(String subforumTitle);
 }
