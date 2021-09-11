@@ -1,7 +1,10 @@
 package com.revature.flash_back_api.services;
 
+import com.revature.flash_back_api.models.documents.Threads;
+import com.revature.flash_back_api.models.documents.TriviaCard;
 import com.revature.flash_back_api.models.repos.SubforumRepository;
 import com.revature.flash_back_api.models.repos.ThreadRepository;
+import com.revature.flash_back_api.util.exceptions.InvalidRequestException;
 import com.revature.flash_back_api.web.dtos.SubforumDTO;
 import com.revature.flash_back_api.web.dtos.ThreadDTO;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,5 +33,26 @@ public class ForumService {
                 .stream()
                 .map(ThreadDTO::new)
                 .collect(Collectors.toList());
+    }
+
+    public Threads saveNewThread(Threads newThread) {
+        System.out.println(newThread);
+        if (!isCardValid(newThread)) {
+            throw new InvalidRequestException("Invalid user data provided!");
+        }
+        return threadRepo.save(newThread);
+    }
+
+    //TODO Implement proper validation checking for threads!
+    public static boolean isCardValid(Threads thread) {
+        System.out.println(thread);
+        if ((thread == null) ||
+                (thread.getThreadTitle() == null || thread.getThreadTitle().trim().equals("")) ||
+                (thread.getThreadContent() == null || thread.getThreadContent().trim().equals("")) ||
+                (thread.getUserId() == null)) {
+            return false;
+        } else {
+            return true;
+        }
     }
 }
