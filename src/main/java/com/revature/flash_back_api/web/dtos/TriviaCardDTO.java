@@ -23,8 +23,6 @@ public class TriviaCardDTO {
         this.points = card.getPoints();
     }
 
-    public TriviaCardDTO() {}
-
     public String getId() {
         return id;
     }
