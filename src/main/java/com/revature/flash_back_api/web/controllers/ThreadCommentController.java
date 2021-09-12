@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/forum")
+@RequestMapping("/threads")
 public class ThreadCommentController {
     //For creating new comments
 
@@ -20,7 +20,7 @@ public class ThreadCommentController {
     }
 
     //TODO find a way to get the correct mapping for specific thread
-    @PostMapping("/new-comment" )
+    @PostMapping("/comment" )
     @ResponseStatus(HttpStatus.CREATED)
     public ThreadCommentDTO createNewComment(@RequestBody ThreadComment comment) {
         return new ThreadCommentDTO(ThreadCommentService.saveNewComment(comment));
