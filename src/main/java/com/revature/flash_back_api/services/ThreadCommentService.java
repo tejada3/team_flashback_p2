@@ -29,19 +29,19 @@ public class ThreadCommentService {
     }
 
 
-    public ThreadComment saveNewComment(ThreadComment newCard) {
-        System.out.println(newCard);
-        if (!isCardValid(newCard)) {
+    public ThreadComment saveNewComment(ThreadComment newComment) {
+        System.out.println(newComment);
+        if (!isCommentValid(newComment)) {
             throw new InvalidRequestException("Invalid Comment!");
         }
 
-        System.out.println(newCard);
-        return ThreadCommentRepository.save(newCard);
+        System.out.println(newComment);
+        return ThreadCommentRepository.save(newComment);
 
     }
 
     //#TODO implement own validation checking
-    public static boolean isCardValid(ThreadComment comment) {
+    public static boolean isCommentValid(ThreadComment comment) {
         System.out.println(comment);
         if ((comment == null) || comment.getContent() == ""){
             return false;
