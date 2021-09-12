@@ -1,7 +1,6 @@
 package com.revature.flash_back_api.services;
 
 import com.revature.flash_back_api.models.documents.Threads;
-import com.revature.flash_back_api.models.documents.TriviaCard;
 import com.revature.flash_back_api.models.repos.SubforumRepository;
 import com.revature.flash_back_api.models.repos.ThreadRepository;
 import com.revature.flash_back_api.util.exceptions.InvalidRequestException;
@@ -37,14 +36,14 @@ public class ForumService {
 
     public Threads saveNewThread(Threads newThread) {
         System.out.println(newThread);
-        if (!isCardValid(newThread)) {
+        if (!isThreadValid(newThread)) {
             throw new InvalidRequestException("Invalid user data provided!");
         }
         return threadRepo.save(newThread);
     }
 
     //TODO Implement proper validation checking for threads!
-    public static boolean isCardValid(Threads thread) {
+    public static boolean isThreadValid(Threads thread) {
         System.out.println(thread);
         if ((thread == null) ||
                 (thread.getThreadTitle() == null || thread.getThreadTitle().trim().equals("")) ||
