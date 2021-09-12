@@ -13,6 +13,7 @@ public class ThreadDTO {
     private String threadContent;
 
     public ThreadDTO(Threads thread) {
+        this.id = thread.getId();
         this.userId = thread.getUserId();
         this.subforumId = thread.getSubforumId();
         this.threadTitle = thread.getThreadTitle();

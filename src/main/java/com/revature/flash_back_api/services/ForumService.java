@@ -28,7 +28,7 @@ public class ForumService {
     }
 
     public List<ThreadDTO> findAllThreads(String subforumId) {
-        return threadRepo.findBysubforumId(subforumId)
+        return threadRepo.findBySubforumId(subforumId)
                 .stream()
                 .map(ThreadDTO::new)
                 .collect(Collectors.toList());
