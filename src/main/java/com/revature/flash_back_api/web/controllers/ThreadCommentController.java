@@ -8,10 +8,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RestController
-@RequestMapping("/")
 public class ThreadCommentController {
-    //For creating new cards
+    //For creating new comments
 
     private ThreadCommentService ThreadCommentService;
 
@@ -19,20 +17,11 @@ public class ThreadCommentController {
         this.ThreadCommentService = ThreadCommentService;
     }
 
-
-
-
+    //TODO find a way to get the correct mapping for specific thread
     @PostMapping("/" )
     @ResponseStatus(HttpStatus.CREATED)
     public ThreadCommentDTO createNewComment(@RequestBody ThreadComment comment) {
         return new ThreadCommentDTO(ThreadCommentService.saveNewComment(comment));
 
     }
-
-
-    @GetMapping(produces = "application/json",path = "/")
-    public List<ThreadCommentDTO> getAllComments(){
-        return ThreadCommentService.findAll();
-    }
-
 }
