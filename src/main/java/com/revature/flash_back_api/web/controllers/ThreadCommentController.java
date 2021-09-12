@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@RestController
+@RequestMapping("/forum")
 public class ThreadCommentController {
     //For creating new comments
 
@@ -18,7 +20,7 @@ public class ThreadCommentController {
     }
 
     //TODO find a way to get the correct mapping for specific thread
-    @PostMapping("/" )
+    @PostMapping("/new-comment" )
     @ResponseStatus(HttpStatus.CREATED)
     public ThreadCommentDTO createNewComment(@RequestBody ThreadComment comment) {
         return new ThreadCommentDTO(ThreadCommentService.saveNewComment(comment));
