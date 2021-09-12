@@ -38,8 +38,22 @@ public class TriviaCardService {
 
         System.out.println(newCard);
         return triviaCardRepository.save(newCard);
-
     }
+
+    public TriviaCard deleteCardById(String id) {
+        return triviaCardRepository.deleteTriviaCardById(id);
+    }
+
+    public String deleteCardByTriviaCardSetId(String triviaCardSetId) {
+        for(TriviaCardDTO triviaCard : findAll()){
+            if(triviaCard != null && triviaCard.getTriviaCardSetId() != null && triviaCard.getTriviaCardSetId().equals(triviaCardSetId)){
+                deleteCardById(triviaCard.getId());
+            }
+        }
+        return "Success";
+    }
+
+
 
     //#TODO implement own validation checking
     public static boolean isCardValid(TriviaCard card) {

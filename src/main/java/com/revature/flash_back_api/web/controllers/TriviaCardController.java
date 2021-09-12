@@ -20,8 +20,6 @@ public class TriviaCardController {
     }
 
 
-
-
     @PostMapping("/create-trivia" )
     @ResponseStatus(HttpStatus.CREATED)
     public TriviaCardDTO createdNewCard(@RequestBody TriviaCard card) {
@@ -29,10 +27,19 @@ public class TriviaCardController {
 
     }
 
-
     @GetMapping(produces = "application/json",path = "/getAllCards")
     public List<TriviaCardDTO> getAllTrivia(){
         return triviaCardService.findAll();
+    }
+
+    @DeleteMapping(produces = "application/json", path="/delete-card-byId")
+    public TriviaCardDTO deleteCardById(@RequestBody String id) {
+        return new TriviaCardDTO(triviaCardService.deleteCardById(id));
+    }
+
+    @DeleteMapping(produces = "application/json", path="/delete-card-bySetId")
+    public String deleteCardByTriviaCardSetId(@RequestBody String triviaCardSetId) {
+        return triviaCardService.deleteCardByTriviaCardSetId(triviaCardSetId);
     }
 
 }
