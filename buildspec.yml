@@ -10,9 +10,9 @@ phases:
   build:
     commands:
       - echo Build started on `date`
-      - mvn clean package
+      - mvn spring-boot:repackage
 
 artifacts:
   files:
-    - target/Flashback-1.0-SNAPCHAT.jar
+    - target/*.jar
   discard-paths: yes
