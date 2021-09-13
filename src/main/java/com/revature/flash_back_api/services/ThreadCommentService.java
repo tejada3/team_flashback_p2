@@ -5,6 +5,7 @@ import com.revature.flash_back_api.models.documents.ThreadComment;
 import com.revature.flash_back_api.models.repos.ThreadCommentRepository;
 import com.revature.flash_back_api.util.exceptions.InvalidRequestException;
 import com.revature.flash_back_api.web.dtos.ThreadCommentDTO;
+import com.revature.flash_back_api.web.dtos.ThreadDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -21,13 +22,12 @@ public class ThreadCommentService {
         this.ThreadCommentRepository = ThreadCommentRepository;
     }
 
-    public List<ThreadCommentDTO> findAll(){
+    public List<ThreadCommentDTO> findAll(String subforumId){
         return ThreadCommentRepository.findAll()
                 .stream()
                 .map(ThreadCommentDTO::new)
                 .collect(Collectors.toList());
     }
-
 
     public ThreadComment saveNewComment(ThreadComment newComment) {
         System.out.println(newComment);
