@@ -7,4 +7,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ThreadCommentRepository extends MongoRepository<ThreadComment, String> {
+
+    void deleteByThreadId(String threadId);
 }

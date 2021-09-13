@@ -40,6 +40,11 @@ public class ThreadCommentService {
 
     }
 
+    public boolean deleteAllByThreadId(String threadId) {
+        ThreadCommentRepository.deleteByThreadId(threadId);
+        return true;
+    }
+
     //#TODO implement own validation checking
     public static boolean isCommentValid(ThreadComment comment) {
         System.out.println(comment);
