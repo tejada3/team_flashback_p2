@@ -16,9 +16,10 @@ public class ForumService {
 
     private final SubforumRepository subforumRepo;
     private final ThreadRepository threadRepo;
+    private final ThreadCommentService commentService;
 
     @Autowired
-    ForumService(SubforumRepository subforumRepo, ThreadRepository threadRepo) { this.subforumRepo = subforumRepo; this.threadRepo = threadRepo; }
+    ForumService(SubforumRepository subforumRepo, ThreadRepository threadRepo, ThreadCommentService commentService) { this.subforumRepo = subforumRepo; this.threadRepo = threadRepo; this.commentService = commentService; }
 
     public List<SubforumDTO> findAllSubforums() {
         return subforumRepo.findAll()
@@ -40,6 +41,14 @@ public class ForumService {
             throw new InvalidRequestException("Invalid user data provided!");
         }
         return threadRepo.save(newThread);
+    }
+
+    public void deleteOldThread(String threadId) {
+        if(commentService.deleteAllByThreadId(threadId)) {
+            threadRepo.deleteById(threadId);
+        } else {
+            System.out.println("Deletion of all thread comments failed! aborting request...");
+        }
     }
 
     //TODO Implement proper validation checking for threads!

@@ -11,4 +11,6 @@ import java.util.List;
 public interface ThreadCommentRepository extends MongoRepository<ThreadComment, String> {
 
     List<ThreadComment> findByThreadId(String threadId);
+
+    void deleteByThreadId(String threadId);
 }
