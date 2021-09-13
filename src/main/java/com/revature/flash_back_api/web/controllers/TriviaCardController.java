@@ -22,6 +22,15 @@ public class TriviaCardController {
 
 
 
+    @GetMapping(produces = "application/json",path = "/bySetId")
+    public List<TriviaCardDTO> getBySetId(@RequestParam String setId){
+        System.out.println(triviaCardService.getCardsBySetId(setId));
+        return triviaCardService.getCardsBySetId(setId);
+    }
+
+
+
+
     @PostMapping("/create-trivia" )
     @ResponseStatus(HttpStatus.CREATED)
     public TriviaCardDTO createdNewCard(@RequestBody TriviaCard card) {
@@ -34,5 +43,10 @@ public class TriviaCardController {
     public List<TriviaCardDTO> getAllTrivia(){
         return triviaCardService.findAll();
     }
+
+
+
+
+
 
 }

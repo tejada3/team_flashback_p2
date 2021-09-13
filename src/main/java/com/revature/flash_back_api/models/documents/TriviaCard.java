@@ -1,5 +1,6 @@
 package com.revature.flash_back_api.models.documents;
 
+import com.jayway.jsonpath.JsonPath;
 import com.revature.flash_back_api.models.repos.TriviaCardRepository;
 import com.revature.flash_back_api.util.exceptions.InvalidRequestException;
 import org.springframework.context.annotation.Scope;
@@ -116,4 +117,6 @@ public class TriviaCard {
                 ", points='" + points + '\'' +
                 '}';
     }
+
+
 }
