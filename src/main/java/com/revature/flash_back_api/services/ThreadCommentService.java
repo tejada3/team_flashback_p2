@@ -23,7 +23,7 @@ public class ThreadCommentService {
     }
 
     public List<ThreadCommentDTO> findAll(String subforumId){
-        return ThreadCommentRepository.findAll()
+        return ThreadCommentRepository.findByThreadId(subforumId)
                 .stream()
                 .map(ThreadCommentDTO::new)
                 .collect(Collectors.toList());
@@ -38,6 +38,11 @@ public class ThreadCommentService {
         System.out.println(newComment);
         return ThreadCommentRepository.save(newComment);
 
+    }
+
+    public boolean deleteAllByThreadId(String threadId) {
+        ThreadCommentRepository.deleteByThreadId(threadId);
+        return true;
     }
 
     //#TODO implement own validation checking
