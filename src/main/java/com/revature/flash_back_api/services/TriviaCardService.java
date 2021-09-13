@@ -17,7 +17,6 @@ public class TriviaCardService {
 
     private final TriviaCardRepository triviaCardRepository;
 
-    @Autowired
     TriviaCardService(TriviaCardRepository triviaCardRepository) {
         this.triviaCardRepository = triviaCardRepository;
     }
@@ -44,13 +43,8 @@ public class TriviaCardService {
         return triviaCardRepository.deleteTriviaCardById(id);
     }
 
-    public String deleteCardByTriviaCardSetId(String triviaCardSetId) {
-        for(TriviaCardDTO triviaCard : findAll()){
-            if(triviaCard != null && triviaCard.getTriviaCardSetId() != null && triviaCard.getTriviaCardSetId().equals(triviaCardSetId)){
-                deleteCardById(triviaCard.getId());
-            }
-        }
-        return "Success";
+    public TriviaCard deleteAllByTriviaCardSetId(String triviaCardSetId) {
+        return triviaCardRepository.deleteAllByTriviaCardSetId(triviaCardSetId);
     }
 
 

@@ -3,6 +3,7 @@ package com.revature.flash_back_api.web.controllers;
 import com.revature.flash_back_api.models.documents.TriviaCard;
 import com.revature.flash_back_api.services.TriviaCardService;
 import com.revature.flash_back_api.web.dtos.TriviaCardDTO;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,12 +20,10 @@ public class TriviaCardController {
         this.triviaCardService = triviaCardService;
     }
 
-
     @PostMapping("/create-trivia" )
     @ResponseStatus(HttpStatus.CREATED)
     public TriviaCardDTO createdNewCard(@RequestBody TriviaCard card) {
         return new TriviaCardDTO(triviaCardService.saveNewCard(card));
-
     }
 
     @GetMapping(produces = "application/json",path = "/getAllCards")
@@ -33,13 +32,13 @@ public class TriviaCardController {
     }
 
     @DeleteMapping(produces = "application/json", path="/delete-card-byId")
-    public TriviaCardDTO deleteCardById(@RequestBody String id) {
+    public TriviaCardDTO deleteCardById(@RequestParam String id) {
         return new TriviaCardDTO(triviaCardService.deleteCardById(id));
     }
 
     @DeleteMapping(produces = "application/json", path="/delete-card-bySetId")
-    public String deleteCardByTriviaCardSetId(@RequestBody String triviaCardSetId) {
-        return triviaCardService.deleteCardByTriviaCardSetId(triviaCardSetId);
+    public TriviaCard deleteCardByTriviaCardSetId(@RequestParam String triviaCardSetId) {
+        return triviaCardService.deleteAllByTriviaCardSetId(triviaCardSetId);
     }
 
 }
