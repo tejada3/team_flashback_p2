@@ -23,7 +23,7 @@ public class ThreadCommentService {
     }
 
     public List<ThreadCommentDTO> findAll(String subforumId){
-        return ThreadCommentRepository.findAll()
+        return ThreadCommentRepository.findByThreadId(subforumId)
                 .stream()
                 .map(ThreadCommentDTO::new)
                 .collect(Collectors.toList());
