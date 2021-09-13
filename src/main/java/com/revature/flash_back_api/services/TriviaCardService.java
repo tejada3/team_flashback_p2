@@ -17,7 +17,6 @@ public class TriviaCardService {
 
     private final TriviaCardRepository triviaCardRepository;
 
-    @Autowired
     TriviaCardService(TriviaCardRepository triviaCardRepository) {
         this.triviaCardRepository = triviaCardRepository;
     }
@@ -38,8 +37,17 @@ public class TriviaCardService {
 
         System.out.println(newCard);
         return triviaCardRepository.save(newCard);
-
     }
+
+    public TriviaCard deleteCardById(String id) {
+        return triviaCardRepository.deleteTriviaCardById(id);
+    }
+
+    public TriviaCard deleteAllByTriviaCardSetId(String triviaCardSetId) {
+        return triviaCardRepository.deleteAllByTriviaCardSetId(triviaCardSetId);
+    }
+
+
 
     //#TODO implement own validation checking
     public static boolean isCardValid(TriviaCard card) {

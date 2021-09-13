@@ -1,8 +1,10 @@
 package com.revature.flash_back_api.web.controllers;
 
 import com.revature.flash_back_api.models.documents.TriviaCardSet;
+import com.revature.flash_back_api.services.TriviaCardService;
 import com.revature.flash_back_api.services.TriviaCardSetsService;
 import com.revature.flash_back_api.web.dtos.TriviaCardSetDTO;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -13,9 +15,12 @@ import java.util.List;
 public class TriviaCardSetController {
 
     private TriviaCardSetsService triviaCardSetsService;
+    private TriviaCardService triviaCardService;
 
-    public TriviaCardSetController(TriviaCardSetsService triviaCardSetsService){
+    @Autowired
+    public TriviaCardSetController(TriviaCardSetsService triviaCardSetsService, TriviaCardService triviaCardService){
         this.triviaCardSetsService = triviaCardSetsService;
+        this.triviaCardService = triviaCardService;
     }
 
     //for getting a list of all trivia card sets
@@ -36,6 +41,7 @@ public class TriviaCardSetController {
     @DeleteMapping("/delete-set")
     @ResponseStatus(HttpStatus.OK)
     public TriviaCardSetDTO deleteSet(@RequestBody TriviaCardSet triviaCardSet){
+        triviaCardService.deleteAllByTriviaCardSetId(triviaCardSet.getId());
         return new TriviaCardSetDTO(triviaCardSetsService.deleteSet(triviaCardSet));
     }
 

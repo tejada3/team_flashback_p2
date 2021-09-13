@@ -9,4 +9,7 @@ import org.springframework.stereotype.Repository;
 public interface TriviaCardRepository extends MongoRepository<TriviaCard, String>{
     TriviaCard findAllByTriviaCardSetId(String id);
 
+    TriviaCard deleteAllByTriviaCardSetId(String triviaCardSetId);
+
+    TriviaCard deleteTriviaCardById(String id);
 }
