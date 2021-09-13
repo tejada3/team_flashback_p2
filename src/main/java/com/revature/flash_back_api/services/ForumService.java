@@ -3,7 +3,6 @@ package com.revature.flash_back_api.services;
 import com.revature.flash_back_api.models.documents.Threads;
 import com.revature.flash_back_api.models.repos.SubforumRepository;
 import com.revature.flash_back_api.models.repos.ThreadRepository;
-import com.revature.flash_back_api.util.exceptions.DataSourceException;
 import com.revature.flash_back_api.util.exceptions.InvalidRequestException;
 import com.revature.flash_back_api.web.dtos.SubforumDTO;
 import com.revature.flash_back_api.web.dtos.ThreadDTO;
