@@ -18,11 +18,9 @@ public class TriviaCardService {
 
     private final TriviaCardRepository triviaCardRepository;
 
-<<<<<<< HEAD
+
 
     @Autowired
-=======
->>>>>>> 67fe1a700f8b6add974af5e2e58876c1549f91b8
     TriviaCardService(TriviaCardRepository triviaCardRepository) {
         this.triviaCardRepository = triviaCardRepository;
     }
