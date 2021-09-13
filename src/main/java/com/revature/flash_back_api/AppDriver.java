@@ -15,7 +15,6 @@ import java.util.List;
 
 public class AppDriver {
 
-
     public static void main(String[] args) {
         SpringApplication.run(AppDriver.class, args);
     }

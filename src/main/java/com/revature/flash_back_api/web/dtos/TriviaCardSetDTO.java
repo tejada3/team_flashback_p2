@@ -16,6 +16,8 @@ public class TriviaCardSetDTO {
         this.cardCount = triviaCardSet.getCardCount();
     }
 
+
+
     public String getId() {
         return id;
     }

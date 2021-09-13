@@ -6,8 +6,8 @@ import java.util.Objects;
 public class TriviaCardDTO {
 
 
-    private String cardID;
-    private String setID;
+    private String id;
+    private String triviaCardSetId;
     private String question;
     private String correctAnswer;
     private String[] answers;
@@ -15,28 +15,30 @@ public class TriviaCardDTO {
 
 
     public TriviaCardDTO(TriviaCard card){
-        this.cardID = card.getId();
-        this.setID = card.getTriviaCardSetId();
+
+        this.id = card.getId();
+        this.triviaCardSetId = card.getTriviaCardSetId();
+
         this.question = card.getQuestion();
         this.correctAnswer = card.getCorrectAnswer();
         this.answers = card.getAnswers().toArray(new String[0]);
         this.points = card.getPoints();
     }
 
-    public String getCardID() {
-        return cardID;
+    public String getId() {
+        return id;
     }
 
-    public void setCardID(String cardID) {
-        this.cardID = cardID;
+    public void setId(String id) {
+        this.id = id;
     }
 
-    public String getSetID() {
-        return setID;
+    public String getTriviaCardSetId() {
+        return triviaCardSetId;
     }
 
-    public void setSetID(String setID) {
-        this.setID = setID;
+    public void setTriviaCardSetId(String triviaCardSetId) {
+        this.triviaCardSetId = triviaCardSetId;
     }
 
     public String getQuestion() {
@@ -76,19 +78,19 @@ public class TriviaCardDTO {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         TriviaCard that = (TriviaCard) o;
-        return Objects.equals(cardID, that.getId()) && Objects.equals(setID, that.getTriviaCardSetId()) && Objects.equals(question, that.getQuestion()) && Objects.equals(correctAnswer, that.getCorrectAnswer()) && Objects.equals(answers, that.getAnswers()) && Objects.equals(points, that.getPoints());
+        return Objects.equals(id, that.getId()) && Objects.equals(triviaCardSetId, that.getTriviaCardSetId()) && Objects.equals(question, that.getQuestion()) && Objects.equals(correctAnswer, that.getCorrectAnswer()) && Objects.equals(answers, that.getAnswers()) && Objects.equals(points, that.getPoints());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(cardID, setID, question, correctAnswer, answers, points);
+        return Objects.hash(id, triviaCardSetId, question, correctAnswer, answers, points);
     }
 
     @Override
     public String toString() {
         return "TriviaCard{" +
-                "id='" + cardID + '\'' +
-                ", triviaCardSetId='" + setID + '\'' +
+                "id='" + id + '\'' +
+                ", triviaCardSetId='" + triviaCardSetId + '\'' +
                 ", question='" + question + '\'' +
                 ", correctAnswer='" + correctAnswer + '\'' +
                 ", answers=" + answers +

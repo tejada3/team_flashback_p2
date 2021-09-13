@@ -63,8 +63,11 @@ public class TriviaCardSetsService {
     }
 
     private boolean isTriviaCardSetValid(TriviaCardSet newTriviaCardSet) {
-        //TODO implement validation checking
-        return true;
+        if (newTriviaCardSet == null || newTriviaCardSet.getTopic().trim().equals("")){
+            return false;
+        } else {
+            return true;
+        }
     }
 
 
