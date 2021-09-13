@@ -11,6 +11,10 @@ public class Principal {
     private String id;
     private String username;
     private String role;
+    private String firstName;
+    private String lastName;
+    private String email;
+    private int totalScore;
 
     public Principal() { super(); }
 
@@ -18,6 +22,10 @@ public class Principal {
         this.id = subject.getId();
         this.username = subject.getUsername();
         this.role = subject.getRole();
+        this.firstName = subject.getFirstName();
+        this.lastName = subject.getLastName();
+        this.email = subject.getEmail();
+        this.totalScore = subject.getTotalScore();
     }
 
     public Principal(Claims jwtClaims) {
@@ -26,6 +34,38 @@ public class Principal {
         this.role = jwtClaims.get("role", String.class);
     }
 
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public int getTotalScore() {
+        return totalScore;
+    }
+
+    public void setTotalScore(int totalScore) {
+        this.totalScore = totalScore;
+    }
 
     public String getId() {
         return id;
@@ -51,18 +91,20 @@ public class Principal {
         this.role = role;
     }
 
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (!(o instanceof Principal)) return false;
         Principal principal = (Principal) o;
-        return Objects.equals(id, principal.id) && Objects.equals(username, principal.username) && Objects.equals(role, principal.role);
+        return getTotalScore() == principal.getTotalScore() && Objects.equals(getId(), principal.getId()) && Objects.equals(getUsername(), principal.getUsername()) && Objects.equals(getRole(), principal.getRole()) && Objects.equals(getFirstName(), principal.getFirstName()) && Objects.equals(getLastName(), principal.getLastName()) && Objects.equals(getEmail(), principal.getEmail());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, username, role);
+        return Objects.hash(getId(), getUsername(), getRole(), getFirstName(), getLastName(), getEmail(), getTotalScore());
     }
+
 
     @Override
     public String toString() {
@@ -70,8 +112,10 @@ public class Principal {
                 "id='" + id + '\'' +
                 ", username='" + username + '\'' +
                 ", role='" + role + '\'' +
+                ", firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", email='" + email + '\'' +
+                ", totalScore=" + totalScore +
                 '}';
     }
-
-
 }
