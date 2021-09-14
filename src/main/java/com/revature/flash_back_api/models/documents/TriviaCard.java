@@ -32,17 +32,6 @@ public class TriviaCard {
         this.points = points;
         this.answers = answers;
     }
-    public TriviaCard(String triviaCardSetId, String question, String correctAnswer, String points) {
-        this.triviaCardSetId = triviaCardSetId;
-        this.question = question;
-        this.correctAnswer = correctAnswer;
-        this.points = points;
-    }
-
-    public TriviaCard(TriviaCard saveNewCard) {
-    }
-
-
 
     public String getId() {
         return id;
