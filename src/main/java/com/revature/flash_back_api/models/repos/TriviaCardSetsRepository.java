@@ -10,6 +10,5 @@ public interface TriviaCardSetsRepository extends MongoRepository<TriviaCardSet,
     TriviaCardSet findTriviaCardSetById(String id);
     TriviaCardSet findTriviaCardSetByTopic(String topic);
 
-    TriviaCardSet deleteTriviaCardSetById(TriviaCardSet triviaCardSet);
-
+    TriviaCardSet deleteTriviaCardSetById(String id);
 }
