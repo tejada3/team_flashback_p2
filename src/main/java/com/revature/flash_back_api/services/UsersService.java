@@ -65,6 +65,7 @@ public class UsersService {
 
         User authUser = usersRepo.findUserByUsernameAndPassword(username, password);
 
+
         if (authUser == null) {
             throw new AuthenticationException("Invalid credentials provided!");
         }

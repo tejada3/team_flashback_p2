@@ -40,8 +40,8 @@ public class TriviaCardSetsService {
         return triviaCardSetsRepo.save(newTriviaCardSet);
     }
 
-    public TriviaCardSet deleteSet(TriviaCardSet triviaCardSet){
-        return triviaCardSetsRepo.deleteTriviaCardSetById(triviaCardSet.getId());
+    public TriviaCardSet deleteSet(TriviaCardSet triviaCardSetId){
+        return triviaCardSetsRepo.deleteTriviaCardSetById(triviaCardSetId.getId());
     }
 
     public TriviaCardSet updateSet(TriviaCardSet triviaCardSet){

@@ -8,6 +8,7 @@ import com.revature.flash_back_api.web.dtos.TriviaCardSetDTO;
 import com.revature.flash_back_api.web.dtos.TriviaCardDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -17,12 +18,24 @@ public class TriviaCardService {
 
     private final TriviaCardRepository triviaCardRepository;
 
+
+
+    @Autowired
     TriviaCardService(TriviaCardRepository triviaCardRepository) {
         this.triviaCardRepository = triviaCardRepository;
     }
 
     public List<TriviaCardDTO> findAll(){
         return triviaCardRepository.findAll()
+                .stream()
+                .map(TriviaCardDTO::new)
+                .collect(Collectors.toList());
+    }
+
+
+    public List<TriviaCardDTO> getCardsBySetId(String setId){
+        System.out.println(triviaCardRepository.findAllByTriviaCardSetId(setId));
+        return triviaCardRepository.findAllByTriviaCardSetId(setId)
                 .stream()
                 .map(TriviaCardDTO::new)
                 .collect(Collectors.toList());

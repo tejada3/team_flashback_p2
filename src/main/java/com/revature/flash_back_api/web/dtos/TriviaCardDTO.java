@@ -15,8 +15,10 @@ public class TriviaCardDTO {
 
 
     public TriviaCardDTO(TriviaCard card){
+
         this.id = card.getId();
         this.triviaCardSetId = card.getTriviaCardSetId();
+
         this.question = card.getQuestion();
         this.correctAnswer = card.getCorrectAnswer();
         this.answers = card.getAnswers().toArray(new String[0]);
