@@ -44,4 +44,12 @@ public class UserController {
         return usersService.findAll();
     }
 
+
+    @PutMapping("/update-total")
+    @ResponseStatus(HttpStatus.OK)
+    public UserDTO updateScore(@RequestParam String username, String score){
+        return new UserDTO(usersService.updateScore(username , score));
+    }
+
+
 }

@@ -57,6 +57,19 @@ public class UsersService {
     }
 
 
+
+    public User updateScore(String username, String score){
+        User newUser = usersRepo.findUserByUsername(username);
+        System.out.println(newUser);
+
+        newUser.setTotalScore(newUser.getTotalScore() + Integer.parseInt(score));
+//        System.out.println(newUser);
+
+        return usersRepo.save(newUser);
+
+    }
+
+
     public Principal login(String username, String password) {
 
         if (username == null || username.trim().equals("") || password == null || password.trim().equals("")) {

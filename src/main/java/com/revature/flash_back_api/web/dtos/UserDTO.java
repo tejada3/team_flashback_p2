@@ -13,7 +13,7 @@ public class UserDTO {
     private String email;
     private String username;
     private String role;
-    private int totalScore  = 0;
+    private int totalScore;
     private LocalDateTime registrationDateTime;
 
 
@@ -24,6 +24,7 @@ public class UserDTO {
         this.email = user.getEmail();
         this.username = user.getUsername();
         this.role = user.getRole();
+        this.totalScore = user.getTotalScore();
         this.registrationDateTime = user.getRegistrationDateTime();
     }
 
