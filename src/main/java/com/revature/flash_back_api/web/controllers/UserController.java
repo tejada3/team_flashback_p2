@@ -45,9 +45,12 @@ public class UserController {
     }
 
 
-    @PutMapping("/update-total")
-    @ResponseStatus(HttpStatus.OK)
-    public UserDTO updateScore(@RequestParam String username, String score){
+
+    @ResponseStatus( HttpStatus.OK)
+    @PutMapping(produces = "application/json", path ="/update-total")
+    public UserDTO updateScore(@RequestParam String username, @RequestParam String score){
+        System.out.println(username);
+        System.out.println(score);
         return new UserDTO(usersService.updateScore(username , score));
     }
 
