@@ -40,9 +40,10 @@ public class TriviaCardSetController {
     //Todo this will take in a parameter not a body
     @DeleteMapping("/delete-set")
     @ResponseStatus(HttpStatus.OK)
-    public TriviaCardSetDTO deleteSet(@RequestBody TriviaCardSet triviaCardSet){
+    public void deleteSet(@RequestBody TriviaCardSet triviaCardSet){
         triviaCardService.deleteAllByTriviaCardSetId(triviaCardSet.getId());
-        return new TriviaCardSetDTO(triviaCardSetsService.deleteSet(triviaCardSet));
+        triviaCardSetsService.deleteSet(triviaCardSet);
+        return;
     }
 
     @PutMapping("/update-set")
