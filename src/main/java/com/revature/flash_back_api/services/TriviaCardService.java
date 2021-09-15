@@ -56,8 +56,9 @@ public class TriviaCardService {
         return triviaCardRepository.deleteTriviaCardById(id);
     }
 
-    public TriviaCard deleteAllByTriviaCardSetId(String triviaCardSetId) {
-        return triviaCardRepository.deleteAllByTriviaCardSetId(triviaCardSetId);
+    public void deleteAllByTriviaCardSetId(String triviaCardSetId) {
+        triviaCardRepository.deleteAllByTriviaCardSetId(triviaCardSetId);
+        return;
     }
 
 

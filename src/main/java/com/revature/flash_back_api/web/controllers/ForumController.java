@@ -33,7 +33,7 @@ public class ForumController {
         return new ThreadDTO(forumService.saveNewThread(thread));
     }
 
-    @DeleteMapping(path = "/remove-thread", produces = "application/json", consumes = "application/json")
+    @PostMapping(path = "/remove-thread", produces = "application/json", consumes = "application/json")
     @ResponseStatus(HttpStatus.OK)
     public void deleteThread(@RequestBody Threads thread) {
         forumService.deleteOldThread(thread.getId());

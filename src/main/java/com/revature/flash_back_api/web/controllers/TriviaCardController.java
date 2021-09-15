@@ -48,16 +48,15 @@ public class TriviaCardController {
 
 
 
-
-
     @DeleteMapping(produces = "application/json", path="/delete-card-byId")
     public TriviaCardDTO deleteCardById(@RequestParam String id) {
         return new TriviaCardDTO(triviaCardService.deleteCardById(id));
     }
 
     @DeleteMapping(produces = "application/json", path="/delete-card-bySetId")
-    public TriviaCard deleteCardByTriviaCardSetId(@RequestParam String triviaCardSetId) {
-        return triviaCardService.deleteAllByTriviaCardSetId(triviaCardSetId);
+    public void deleteAllByTriviaCardSetId(@RequestParam String triviaCardSetId) {
+        triviaCardService.deleteAllByTriviaCardSetId(triviaCardSetId);
+        return;
     }
 
 
