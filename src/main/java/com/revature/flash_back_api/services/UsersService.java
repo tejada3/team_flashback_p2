@@ -28,11 +28,13 @@ public class UsersService {
 
     public List<UserDTO> findAll(){
 
-        return usersRepo.findAll()
+        return usersRepo.findAllByOrderByTotalScoreDesc()
                 .stream()
                 .map(UserDTO::new)
                 .collect(Collectors.toList());
     }
+
+
 
     public User register(User newUser) {
 

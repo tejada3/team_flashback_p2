@@ -38,7 +38,7 @@ public class User {
     private String password;
 
     private String role;
-    private int totalScore = 0;
+    private int totalScore;
     private LocalDateTime registrationDateTime;
 
     public User(){
