@@ -11,9 +11,7 @@ import java.util.List;
 public interface TriviaCardRepository extends MongoRepository<TriviaCard, String>{
     List<TriviaCard> findAllByTriviaCardSetId(String triviaCardSetId);
 
-
-
-    TriviaCard deleteAllByTriviaCardSetId(String triviaCardSetId);
+    void deleteAllByTriviaCardSetId(String triviaCardSetId);
 
     TriviaCard deleteTriviaCardById(String id);
 }
