@@ -33,7 +33,6 @@ public class UserController {
     @PostMapping("/register")
     @ResponseStatus(HttpStatus.CREATED)
     public UserDTO register(@RequestBody User newUser) {
-        ///changed this to return a user DTO instead of principal
         return new UserDTO(usersService.register(newUser));
 
     }
@@ -46,6 +45,7 @@ public class UserController {
 
 
 
+    //updates Users Scores
     @ResponseStatus( HttpStatus.OK)
     @PutMapping(produces = "application/json", path ="/update-total")
     public UserDTO updateScore(@RequestParam String username, @RequestParam String score){

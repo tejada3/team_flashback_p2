@@ -15,6 +15,7 @@ public class Principal {
     private String lastName;
     private String email;
     private int totalScore;
+    private String registrationDate;
 
     public Principal() { super(); }
 
@@ -26,6 +27,7 @@ public class Principal {
         this.lastName = subject.getLastName();
         this.email = subject.getEmail();
         this.totalScore = subject.getTotalScore();
+        this.registrationDate = subject.getRegistrationDateTime().toString();
     }
 
     public Principal(Claims jwtClaims) {
@@ -34,6 +36,14 @@ public class Principal {
         this.role = jwtClaims.get("role", String.class);
     }
 
+
+    public String getRegistrationDate() {
+        return registrationDate;
+    }
+
+    public void setRegistrationDate(String registrationDate) {
+        this.registrationDate = registrationDate;
+    }
 
     public String getFirstName() {
         return firstName;

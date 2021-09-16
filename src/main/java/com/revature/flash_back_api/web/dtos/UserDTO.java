@@ -1,6 +1,8 @@
 package com.revature.flash_back_api.web.dtos;
 
 import com.revature.flash_back_api.models.documents.User;
+
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
@@ -14,7 +16,7 @@ public class UserDTO {
     private String username;
     private String role;
     private int totalScore;
-    private LocalDateTime registrationDateTime;
+    private LocalDate registrationDateTime;
 
 
     public UserDTO(User user){
@@ -29,11 +31,12 @@ public class UserDTO {
     }
 
 
-    public LocalDateTime getRegistrationDateTime() {
+    public LocalDate getRegistrationDateTime() {
         return registrationDateTime;
     }
 
-    public void setRegistrationDateTime(LocalDateTime registrationDateTime) {
+
+    public void setRegistrationDateTime(LocalDate registrationDateTime) {
         this.registrationDateTime = registrationDateTime;
     }
 

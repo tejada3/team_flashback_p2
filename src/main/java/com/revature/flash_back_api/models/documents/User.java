@@ -9,7 +9,9 @@ import org.hibernate.validator.constraints.Length;
 
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+
 import java.util.Objects;
 
 
@@ -39,7 +41,9 @@ public class User {
 
     private String role;
     private int totalScore;
-    private LocalDateTime registrationDateTime;
+
+
+    private LocalDate registrationDateTime;
 
     public User(){
     super();
@@ -60,15 +64,15 @@ public class User {
 
     public User(String firstName, String lastName, String email, String username, String password, String role, LocalDateTime registrationDateTime){
         this(firstName, lastName, email, username, password, role);
-        this.registrationDateTime = registrationDateTime;
+
     }
 
 
-    public LocalDateTime getRegistrationDateTime() {
+    public LocalDate getRegistrationDateTime() {
         return registrationDateTime;
     }
 
-    public void setRegistrationDateTime(LocalDateTime registrationDateTime) {
+    public void setRegistrationDateTime(LocalDate registrationDateTime) {
         this.registrationDateTime = registrationDateTime;
     }
 

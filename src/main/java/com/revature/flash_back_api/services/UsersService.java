@@ -10,6 +10,7 @@ import com.revature.flash_back_api.web.dtos.UserDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -51,8 +52,8 @@ public class UsersService {
         }
 
         newUser.setRole("user");
+        newUser.setRegistrationDateTime(LocalDate.now());
         newUser.setPassword(newUser.getPassword());
-        newUser.setRegistrationDateTime(LocalDateTime.now());
 
         return usersRepo.save(newUser);
 
