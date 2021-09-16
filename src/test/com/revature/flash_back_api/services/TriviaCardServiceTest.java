@@ -1,6 +1,7 @@
 package com.revature.flash_back_api.services;
 
 import com.revature.flash_back_api.models.repos.TriviaCardRepository;
+import com.revature.flash_back_api.models.repos.TriviaCardSetsRepository;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -12,11 +13,13 @@ class TriviaCardServiceTest {
 
     TriviaCardService sut;
     private TriviaCardRepository mockTriviaCardRepo;
+    private TriviaCardSetsRepository mockTriviaCardSetsRepo;
 
     @BeforeEach
     void setUp() {
         mockTriviaCardRepo = mock(TriviaCardRepository.class);
-        sut = new TriviaCardService(mockTriviaCardRepo);
+        mockTriviaCardSetsRepo = mock(TriviaCardSetsRepository.class);
+        sut = new TriviaCardService(mockTriviaCardRepo, mockTriviaCardSetsRepo);
     }
 
     @AfterEach
