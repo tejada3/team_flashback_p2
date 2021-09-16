@@ -51,6 +51,18 @@ class ForumServiceTest {
     void isThreadValid() {
     }
 
+    @Test
+    void saveNewSubforum() {
+    }
+
+    @Test
+    void deleteOldSubforum() {
+    }
+
+    @Test
+    void isSubforumValid() {
+    }
+
     /* Example test for reference:
     @Test
     public void isUserValid_returnsFalseForGivenBlankValues() {

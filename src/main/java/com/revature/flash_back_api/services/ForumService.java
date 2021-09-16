@@ -1,5 +1,6 @@
 package com.revature.flash_back_api.services;
 
+import com.revature.flash_back_api.models.documents.Subforum;
 import com.revature.flash_back_api.models.documents.Threads;
 import com.revature.flash_back_api.models.repos.SubforumRepository;
 import com.revature.flash_back_api.models.repos.ThreadRepository;
@@ -8,6 +9,8 @@ import com.revature.flash_back_api.web.dtos.SubforumDTO;
 import com.revature.flash_back_api.web.dtos.ThreadDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -26,6 +29,34 @@ public class ForumService {
                 .stream()
                 .map(SubforumDTO::new)
                 .collect(Collectors.toList());
+    }
+
+    public Subforum saveNewSubforum(Subforum subforum) {
+        System.out.println(subforum);
+        if (!isSubforumValid(subforum)) {
+            throw new InvalidRequestException("Invalid Subforum provided!");
+        }
+        return subforumRepo.save(subforum);
+    }
+
+    public void deleteOldSubforum(String subforumId) {
+        if(!subforumId.trim().equals("")) {
+            List<ThreadDTO> threadList;
+            threadList = findAllThreads(subforumId);
+            if (threadList.size() > 0) {
+                for (ThreadDTO thread : threadList) {
+                    deleteOldThread(thread.getId());
+                }
+                System.out.println("All Subforums successfully deleted! Good work!");
+            } else {
+                System.out.println("Subforum has no associated threads! Deleting subforum...");
+            }
+
+            subforumRepo.deleteById(subforumId);
+
+        } else {
+            throw new InvalidRequestException("That subforumId is null!");
+        }
     }
 
     public List<ThreadDTO> findAllThreads(String subforumId) {
@@ -51,16 +82,20 @@ public class ForumService {
         }
     }
 
+    // TODO: Using TDD, develop a better validation for subforums!
+    public static boolean isSubforumValid(Subforum subforum) {
+        System.out.println(subforum);
+        return (subforum != null) &&
+                (subforum.getSubforumTitle() != null) && !subforum.getSubforumTitle().trim().equals("") &&
+                (subforum.getThreadCount() >= 0);
+    }
+
     //TODO Implement proper validation checking for threads!
     public static boolean isThreadValid(Threads thread) {
         System.out.println(thread);
-        if ((thread == null) ||
-                (thread.getThreadTitle() == null || thread.getThreadTitle().trim().equals("")) ||
-                (thread.getThreadContent() == null || thread.getThreadContent().trim().equals("")) ||
-                (thread.getUserId() == null)) {
-            return false;
-        } else {
-            return true;
-        }
+        return (thread != null) &&
+                (thread.getThreadTitle() != null && !thread.getThreadTitle().trim().equals("")) &&
+                (thread.getThreadContent() != null && !thread.getThreadContent().trim().equals("")) &&
+                (thread.getUserId() != null);
     }
 }
