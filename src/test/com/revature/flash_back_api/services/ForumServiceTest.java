@@ -2,34 +2,53 @@ package com.revature.flash_back_api.services;
 
 import com.revature.flash_back_api.models.repos.SubforumRepository;
 import com.revature.flash_back_api.models.repos.ThreadRepository;
-import org.aspectj.lang.annotation.After;
-import org.aspectj.lang.annotation.Before;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.mock;
 
-public class ForumServiceTestSuite {
+class ForumServiceTest {
+
     ForumService sut;
     private SubforumRepository mockSubforumRepo;
     private ThreadRepository mockThreadRepo;
     private ThreadCommentService mockThreadCommentService;
 
-    @Before
-    public void beforeEachTest() {
+    @BeforeEach
+    void setUp() {
         mockSubforumRepo = mock(SubforumRepository.class);
         mockThreadCommentService = mock(ThreadCommentService.class);
         sut = new ForumService(mockSubforumRepo, mockThreadRepo, mockThreadCommentService);
     }
 
-    @After
-    public void afterEachTest() { sut = null;}
+    @AfterEach
+    void tearDown() {
+        sut = null;
+    }
 
-    // Repeat ad infinitum
     @Test
-    public void exampleTest_beAsVerboseAsPossible() {
+    void findAllSubforums() {
         // Arrange
         // Act
         // Assert
+    }
+
+    @Test
+    void findAllThreads() {
+    }
+
+    @Test
+    void saveNewThread() {
+    }
+
+    @Test
+    void deleteOldThread() {
+    }
+
+    @Test
+    void isThreadValid() {
     }
 
     /* Example test for reference:
