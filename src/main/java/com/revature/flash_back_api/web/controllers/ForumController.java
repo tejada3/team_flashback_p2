@@ -1,5 +1,6 @@
 package com.revature.flash_back_api.web.controllers;
 
+import com.revature.flash_back_api.models.documents.Subforum;
 import com.revature.flash_back_api.models.documents.Threads;
 import com.revature.flash_back_api.services.ForumService;
 import com.revature.flash_back_api.web.dtos.SubforumDTO;
@@ -24,6 +25,14 @@ public class ForumController {
     @GetMapping(path = "/get-subforum", produces = "application/json")
     public List<SubforumDTO> getAllSubforums() { return forumService.findAllSubforums(); }
 
+    @PostMapping(path = "/create-subforum", produces = "application/json", consumes = "application/json")
+    @ResponseStatus(HttpStatus.CREATED)
+    public void createSubforum(@RequestBody Subforum subforum) { forumService.saveNewSubforum(subforum); }
+
+    @PostMapping(path = "/remove-subforum", produces = "application/json", consumes = "application/json")
+    @ResponseStatus(HttpStatus.OK)
+    public void deleteSubforum(@RequestBody Subforum subforum) { forumService.deleteOldSubforum(subforum.getId()); }
+
     @PostMapping(path="/get-threads", produces = "application/json", consumes = "application/json")
     public List<ThreadDTO> getThreadsBySubforumId(@RequestBody Threads subforumId) { return forumService.findAllThreads(subforumId.getSubforumId()); }
 
@@ -38,4 +47,6 @@ public class ForumController {
     public void deleteThread(@RequestBody Threads thread) {
         forumService.deleteOldThread(thread.getId());
     }
+
+
 }

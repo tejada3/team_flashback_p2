@@ -22,6 +22,11 @@ public class Subforum {
         this.subforumTitle = subforumTitle;
     }
 
+    public Subforum(String subforumTitle, int threadCount) {
+        this.subforumTitle = subforumTitle;
+        this.threadCount = threadCount;
+    }
+
     public String getId() {
         return id;
     }
