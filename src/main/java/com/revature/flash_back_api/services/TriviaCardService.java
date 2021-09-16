@@ -2,7 +2,9 @@ package com.revature.flash_back_api.services;
 
 
 import com.revature.flash_back_api.models.documents.TriviaCard;
+import com.revature.flash_back_api.models.documents.TriviaCardSet;
 import com.revature.flash_back_api.models.repos.TriviaCardRepository;
+import com.revature.flash_back_api.models.repos.TriviaCardSetsRepository;
 import com.revature.flash_back_api.util.exceptions.InvalidRequestException;
 import com.revature.flash_back_api.web.dtos.TriviaCardSetDTO;
 import com.revature.flash_back_api.web.dtos.TriviaCardDTO;
@@ -17,12 +19,15 @@ import java.util.stream.Collectors;
 public class TriviaCardService {
 
     private final TriviaCardRepository triviaCardRepository;
+    private final TriviaCardSetsRepository triviaCardSetsRepository;
 
 
 
     @Autowired
-    TriviaCardService(TriviaCardRepository triviaCardRepository) {
+    TriviaCardService(TriviaCardRepository triviaCardRepository, TriviaCardSetsRepository triviaCardSetsRepository) {
+
         this.triviaCardRepository = triviaCardRepository;
+        this.triviaCardSetsRepository = triviaCardSetsRepository;
     }
 
     public List<TriviaCardDTO> findAll(){
@@ -49,11 +54,24 @@ public class TriviaCardService {
         }
 
         System.out.println(newCard);
+
+        TriviaCardSet u = triviaCardSetsRepository.findTriviaCardSetById(newCard.getTriviaCardSetId());
+        u.addCardCountByOne();
+        System.out.println(u.getCardCount());
+        triviaCardSetsRepository.save(u);
         return triviaCardRepository.save(newCard);
     }
 
     public TriviaCard deleteCardById(String id) {
-        return triviaCardRepository.deleteTriviaCardById(id);
+
+
+        TriviaCard t = triviaCardRepository.deleteTriviaCardById(id);
+        TriviaCardSet u = triviaCardSetsRepository.findTriviaCardSetById(t.getTriviaCardSetId());
+        u.deleteCardCountByOne();
+        triviaCardSetsRepository.save(u);
+        return t;
+
+
     }
 
     public void deleteAllByTriviaCardSetId(String triviaCardSetId) {

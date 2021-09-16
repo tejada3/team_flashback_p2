@@ -14,12 +14,14 @@ public class TriviaCardSet {
 
     private String id;
     private String topic;
-    private int cardCount = 0;
+    private int cardCount;
 
     public TriviaCardSet(){super();}
 
     public TriviaCardSet(String topic){
+
         this.topic = topic;
+        cardCount++;
     }
 
     public String getId() {
@@ -45,6 +47,16 @@ public class TriviaCardSet {
     public void setCardCount(int cardCount) {
         this.cardCount = cardCount;
     }
+
+    public void addCardCountByOne(){
+        setCardCount(getCardCount() + 1);
+    }
+
+    public void deleteCardCountByOne(){
+        setCardCount(getCardCount()-1);
+    }
+
+
 
     @Override
     public boolean equals(Object o) {
