@@ -82,16 +82,16 @@ public class ForumService {
         }
     }
 
-    // TODO: Using TDD, develop a better validation for subforums!
-    public static boolean isSubforumValid(Subforum subforum) {
+
+    public boolean isSubforumValid(Subforum subforum) {
         System.out.println(subforum);
         return (subforum != null) &&
                 (subforum.getSubforumTitle() != null) && !subforum.getSubforumTitle().trim().equals("") &&
-                (subforum.getThreadCount() >= 0);
+                (subforum.getThreadCount() >= 0) && (subforum.getId() == null);
     }
 
     //TODO Implement proper validation checking for threads!
-    public static boolean isThreadValid(Threads thread) {
+    public boolean isThreadValid(Threads thread) {
         System.out.println(thread);
         return (thread != null) &&
                 (thread.getThreadTitle() != null && !thread.getThreadTitle().trim().equals("")) &&
