@@ -61,6 +61,25 @@ public class TriviaCardService {
         return;
     }
 
+    public TriviaCard updateCard(TriviaCard triviaCard){
+
+        TriviaCard updatedCard = new TriviaCard();
+
+        updatedCard.setId(triviaCard.getId());
+        updatedCard.setTriviaCardSetId(triviaCard.getTriviaCardSetId());
+        updatedCard.setQuestion(triviaCard.getQuestion());
+        updatedCard.setCorrectAnswer(triviaCard.getCorrectAnswer());
+        updatedCard.setAnswers(triviaCard.getAnswers());
+        updatedCard.setPoints(triviaCard.getPoints());
+
+        if(!isCardValid(updatedCard)){
+            throw new InvalidRequestException("Invalid Trivia Card data provided");
+        }
+
+        return triviaCardRepository.save(updatedCard);
+
+
+    }
 
 
     //#TODO implement own validation checking
