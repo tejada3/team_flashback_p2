@@ -20,6 +20,14 @@ public class ThreadDTO {
         this.threadContent = thread.getThreadContent();
     }
 
+    public ThreadDTO(String id, String userId, String subforumId, String threadTitle, String threadContent) {
+        this.id = id;
+        this.userId = userId;
+        this.subforumId = subforumId;
+        this.threadTitle = threadTitle;
+        this.threadContent = threadContent;
+    }
+
     public String getId() {
         return id;
     }

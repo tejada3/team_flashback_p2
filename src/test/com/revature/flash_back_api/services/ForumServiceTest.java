@@ -29,12 +29,14 @@ class ForumServiceTest {
     private SubforumRepository mockSubforumRepo;
     private ThreadRepository mockThreadRepo;
     private ThreadCommentService mockThreadCommentService;
+    private ForumService mockForumService;
 
     @BeforeEach
     void setUp() {
         mockSubforumRepo = mock(SubforumRepository.class);
         mockThreadRepo = mock(ThreadRepository.class);
         mockThreadCommentService = mock(ThreadCommentService.class);
+        mockForumService = mock(ForumService.class);
         sut = new ForumService(mockSubforumRepo, mockThreadRepo, mockThreadCommentService);
     }
 
@@ -107,12 +109,38 @@ class ForumServiceTest {
 
     @Test
     void saveNewSubforum() {
+        // Arrange
+        Subforum validThread = new Subforum("valid", 0);
+
+        // Act
+        sut.saveNewSubforum(validThread);
+
+        // Assert
+        verify(mockSubforumRepo, times(1)).save(any(Subforum.class));
     }
 
     @Test
     void deleteOldSubforum_GivenValidSubforumID() {
         // Arrange
         String subforumId = "valid";
+        Threads thread = new Threads("valid","valid","valid","valid");
+        List<Threads> threads = new ArrayList<>();
+        threads.add(thread);
+        when(mockThreadRepo.findBySubforumId(anyString())).thenReturn(threads);
+
+        // Act
+        sut.deleteOldSubforum(subforumId);
+
+        // Assert
+        verify(mockSubforumRepo, times(1)).deleteById(anyString());
+    }
+
+    @Test
+    void deleteOldSubforum_VerifyNoComments() {
+        // Arrange
+        String subforumId = "valid";
+        List<Threads> threads = new ArrayList<>();
+        when(mockThreadRepo.findBySubforumId(anyString())).thenReturn(threads);
 
         // Act
         sut.deleteOldSubforum(subforumId);

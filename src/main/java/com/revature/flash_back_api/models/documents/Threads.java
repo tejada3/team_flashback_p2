@@ -1,5 +1,6 @@
 package com.revature.flash_back_api.models.documents;
 
+import com.revature.flash_back_api.web.dtos.ThreadDTO;
 import org.springframework.context.annotation.Scope;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.stereotype.Component;
@@ -24,6 +25,14 @@ public class Threads {
         this.subforumId = subforumId;
         this.threadTitle = threadTitle;
         this.threadContent = threadContent;
+    }
+
+    public Threads(ThreadDTO thread) {
+        this.id = thread.getId();
+        this.userId = thread.getUserId();
+        this.subforumId = thread.getSubforumId();
+        this.threadTitle = thread.getThreadTitle();
+        this.threadContent = thread.getThreadContent();
     }
 
     public String getId() {
