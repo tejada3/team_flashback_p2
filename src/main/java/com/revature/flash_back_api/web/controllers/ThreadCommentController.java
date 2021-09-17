@@ -30,4 +30,10 @@ public class ThreadCommentController {
 
     @PostMapping(path="/get-comments", produces = "application/json", consumes = "application/json")
     public List<ThreadCommentDTO> getThreadById(@RequestBody ThreadComment threadId) { return ThreadCommentService.findAll(threadId.getThreadId()); }
+
+    @PostMapping(path="/remove-comment", produces="application/json", consumes = "application/json")
+    @ResponseStatus(HttpStatus.OK)
+    public void deleteComment(@RequestBody ThreadComment comment) {
+        ThreadCommentService.deleteById(comment.getId());
+    }
 }
