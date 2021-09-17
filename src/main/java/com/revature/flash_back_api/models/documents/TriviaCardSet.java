@@ -53,7 +53,7 @@ public class TriviaCardSet {
     }
 
     public void deleteCardCountByOne(){
-        setCardCount(getCardCount()-1);
+            setCardCount(getCardCount() - 1);
     }
 
 

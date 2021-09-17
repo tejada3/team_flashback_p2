@@ -67,16 +67,15 @@ public class TriviaCardService {
 
         TriviaCard t = triviaCardRepository.deleteTriviaCardById(id);
         TriviaCardSet u = triviaCardSetsRepository.findTriviaCardSetById(t.getTriviaCardSetId());
-        u.deleteCardCountByOne();
+        if (u.getCardCount()!=0) {
+            u.deleteCardCountByOne();
+        }
         triviaCardSetsRepository.save(u);
         return t;
-
-
     }
 
     public void deleteAllByTriviaCardSetId(String triviaCardSetId) {
         triviaCardRepository.deleteAllByTriviaCardSetId(triviaCardSetId);
-        return;
     }
 
     public TriviaCard updateCard(TriviaCard triviaCard){

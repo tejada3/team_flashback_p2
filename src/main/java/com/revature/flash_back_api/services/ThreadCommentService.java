@@ -9,6 +9,8 @@ import com.revature.flash_back_api.web.dtos.ThreadDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -34,7 +36,7 @@ public class ThreadCommentService {
         if (!isCommentValid(newComment)) {
             throw new InvalidRequestException("Invalid Comment!");
         }
-
+        newComment.setTimestamp(LocalDate.now());
         System.out.println(newComment);
         return ThreadCommentRepository.save(newComment);
 
