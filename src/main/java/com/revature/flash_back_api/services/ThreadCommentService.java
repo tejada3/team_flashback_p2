@@ -40,6 +40,11 @@ public class ThreadCommentService {
 
     }
 
+    public boolean deleteById(String id) {
+        ThreadCommentRepository.deleteById(id);
+        return true;
+    }
+
     public boolean deleteAllByThreadId(String threadId) {
         ThreadCommentRepository.deleteByThreadId(threadId);
         return true;
