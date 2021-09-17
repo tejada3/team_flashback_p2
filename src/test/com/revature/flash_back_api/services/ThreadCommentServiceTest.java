@@ -6,7 +6,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.*;
 
 class ThreadCommentServiceTest {
 
@@ -38,5 +38,17 @@ class ThreadCommentServiceTest {
 
     @Test
     void isCommentValid() {
+    }
+
+    @Test
+    void deleteById() {
+        // Arrange
+        String id = "valid";
+
+        // Act
+        sut.deleteById(id);
+
+        // Assert
+        verify(mockThreadRepo, times(1)).deleteById(anyString());
     }
 }
