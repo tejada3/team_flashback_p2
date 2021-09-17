@@ -74,6 +74,16 @@ public class ForumService {
         return threadRepo.save(newThread);
     }
 
+    public Threads updateOldThread(Threads newThread) {
+        System.out.println(newThread);
+
+        if(!isThreadValid(newThread) || newThread.getId() == null || newThread.getId().trim().equals("")) {
+            throw new InvalidRequestException("That thread is not valid!");
+        }
+
+        return threadRepo.save(newThread);
+    }
+
     public void deleteOldThread(String threadId) {
         if(commentService.deleteAllByThreadId(threadId)) {
             threadRepo.deleteById(threadId);

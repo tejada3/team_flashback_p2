@@ -42,6 +42,13 @@ public class ForumController {
         return new ThreadDTO(forumService.saveNewThread(thread));
     }
 
+    @PutMapping(path="/update-thread", produces = "application/json", consumes = "application/json")
+    @ResponseStatus(HttpStatus.CREATED)
+    public ThreadDTO updateThread(@RequestBody Threads putThread) {
+        System.out.println(putThread);
+        return new ThreadDTO(forumService.updateOldThread(putThread));
+    }
+
     @PostMapping(path = "/remove-thread", produces = "application/json", consumes = "application/json")
     @ResponseStatus(HttpStatus.OK)
     public void deleteThread(@RequestBody Threads thread) {
