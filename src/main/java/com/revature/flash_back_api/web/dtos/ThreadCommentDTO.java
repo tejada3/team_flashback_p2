@@ -2,6 +2,7 @@ package com.revature.flash_back_api.web.dtos;
 
 import com.revature.flash_back_api.models.documents.ThreadComment;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
@@ -12,7 +13,7 @@ public class ThreadCommentDTO {
     private String threadId;
     private String userId;
     private String content;
-    private LocalDateTime timestamp;
+    private LocalDate timestamp;
 
 
     public ThreadCommentDTO(ThreadComment comment){
@@ -55,11 +56,11 @@ public class ThreadCommentDTO {
         this.content = content;
     }
 
-    public LocalDateTime getTimestamp() {
+    public LocalDate getTimestamp() {
         return timestamp;
     }
 
-    public void setTimestamp(LocalDateTime timestamp) {
+    public void setTimestamp(LocalDate timestamp) {
         this.timestamp = timestamp;
     }
 

@@ -4,6 +4,7 @@ import org.springframework.context.annotation.Scope;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Objects;
 
@@ -16,11 +17,11 @@ public class ThreadComment {
     private String threadId;
     private String userId;
     private String content;
-    private LocalDateTime timestamp;
+    private LocalDate timestamp;
 
     public ThreadComment(){ super();}
 
-    public ThreadComment(String threadId, String userId, String content, LocalDateTime timestamp) {
+    public ThreadComment(String threadId, String userId, String content, LocalDate timestamp) {
         this.threadId = threadId;
         this.userId = userId;
         this.content = content;
@@ -59,11 +60,11 @@ public class ThreadComment {
         this.content = content;
     }
 
-    public LocalDateTime getTimestamp() {
+    public LocalDate getTimestamp() {
         return timestamp;
     }
 
-    public void setTimestamp(LocalDateTime timestamp) {
+    public void setTimestamp(LocalDate timestamp) {
         this.timestamp = timestamp;
     }
 
