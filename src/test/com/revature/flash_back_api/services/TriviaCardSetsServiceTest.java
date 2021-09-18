@@ -2,6 +2,8 @@ package com.revature.flash_back_api.services;
 
 import com.revature.flash_back_api.models.documents.TriviaCardSet;
 import com.revature.flash_back_api.models.repos.TriviaCardSetsRepository;
+import com.revature.flash_back_api.util.exceptions.InvalidRequestException;
+import com.revature.flash_back_api.util.exceptions.ResourcePersistenceException;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -33,7 +35,44 @@ class TriviaCardSetsServiceTest {
     }
 
     @Test
-    void createSet() {
+    void createSet_returnsSuccessfully_givenValidData() {
+        TriviaCardSet set = new TriviaCardSet("valid");
+
+        sut.createSet(set);
+
+        verify(mockTCSRepo, times(1)).save(set);
+    }
+
+    @Test
+    void createSet_throwsException_givenInvalidData() {
+        TriviaCardSet set = new TriviaCardSet("");
+
+        boolean testResult = false;
+
+        try{
+            sut.createSet(set);
+        } catch (InvalidRequestException ire) {
+            testResult = true;
+        }
+
+        assertTrue(testResult);
+    }
+
+    @Test
+    void createSet_throwsException_givenExistingTopic() {
+        TriviaCardSet set1 = new TriviaCardSet("duplicate");
+        TriviaCardSet set2 = new TriviaCardSet("duplicate");
+
+        when(mockTCSRepo.findTriviaCardSetByTopic(set1.getTopic())).thenReturn(set2);
+
+        boolean testResult = false;
+        try{
+            sut.createSet(set1);
+        } catch (ResourcePersistenceException rpe) {
+            testResult = true;
+        }
+
+        assertTrue(testResult);
     }
 
     @Test
