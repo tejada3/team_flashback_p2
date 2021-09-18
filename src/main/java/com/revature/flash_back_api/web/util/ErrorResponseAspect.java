@@ -63,6 +63,7 @@ public class ErrorResponseAspect {
     @ExceptionHandler
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
     public ErrorResponse handleOtherExceptions(Exception e) {
+        e.printStackTrace();
         return new ErrorResponse(500, e.getMessage());
     }
 

@@ -4,6 +4,7 @@ import com.revature.flash_back_api.models.documents.User;
 import com.revature.flash_back_api.models.repos.UsersRepository;
 import com.revature.flash_back_api.util.exceptions.AuthenticationException;
 import com.revature.flash_back_api.util.exceptions.InvalidRequestException;
+import com.revature.flash_back_api.util.exceptions.ResourceNotFoundException;
 import com.revature.flash_back_api.util.exceptions.ResourcePersistenceException;
 import com.revature.flash_back_api.web.dtos.Principal;
 import com.revature.flash_back_api.web.dtos.UserDTO;
@@ -26,9 +27,7 @@ public class UsersService {
     }
 
 
-
     public List<UserDTO> findAll(){
-
         return usersRepo.findAllByOrderByTotalScoreDesc()
                 .stream()
                 .map(UserDTO::new)
@@ -38,17 +37,14 @@ public class UsersService {
 
 
     public User register(User newUser) {
-
         if (!isUserValid(newUser)) {
             throw new InvalidRequestException("Invalid user data provided!");
         }
-
         if (usersRepo.findUserByUsername(newUser.getUsername()) != null) {
             throw new ResourcePersistenceException("Provided username is already taken!");
         }
-
         if (usersRepo.findUserByEmail(newUser.getEmail()) != null) {
-            throw new ResourcePersistenceException("Provided username is already taken!");
+            throw new ResourcePersistenceException("Provided email is already taken!");
         }
 
         newUser.setRole("user");
@@ -56,18 +52,13 @@ public class UsersService {
         newUser.setPassword(newUser.getPassword());
 
         return usersRepo.save(newUser);
-
     }
 
 
-
     public User updateScore(String username, String score){
-
         User newUser = usersRepo.findUserByUsername(username);
-        System.out.println(newUser);
         newUser.setTotalScore(newUser.getTotalScore() + Integer.parseInt(score));
         return usersRepo.save(newUser);
-
     }
 
 
@@ -79,26 +70,27 @@ public class UsersService {
 
         User authUser = usersRepo.findUserByUsernameAndPassword(username, password);
 
-
         if (authUser == null) {
             throw new AuthenticationException("Invalid credentials provided!");
         }
 
-
         Principal newP = new Principal(authUser);
         newP.setId(authUser.getId());
         return newP;
-
     }
 
-    //#TODO implement own validation checking
     public boolean isUserValid(User user) {
         if (user == null) return false;
         if (user.getFirstName() == null || user.getFirstName().trim().equals("")) return false;
         if (user.getLastName() == null || user.getLastName().trim().equals("")) return false;
         if (user.getEmail() == null || user.getEmail().trim().equals("")) return false;
-        if (user.getUsername() == null || user.getUsername().trim().equals("")) return false;
-        return user.getPassword() != null && !user.getPassword().trim().equals("");
+        if (user.getUsername() == null || user.getUsername().trim().equals("") || user.getUsername().length() < 5) {
+            return false;
+        }
+        if (user.getPassword() == null || user.getPassword().trim().equals("") || user.getPassword().length() < 5) {
+            return false;
+        }
+        return true;
     }
 
 }

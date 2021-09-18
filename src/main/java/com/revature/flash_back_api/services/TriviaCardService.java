@@ -48,16 +48,12 @@ public class TriviaCardService {
 
 
     public TriviaCard saveNewCard(TriviaCard newCard) {
-        System.out.println(newCard);
         if (!isCardValid(newCard)) {
-            throw new InvalidRequestException("Invalid user data provided!");
+            throw new InvalidRequestException("Invalid card data provided!");
         }
-
-        System.out.println(newCard);
 
         TriviaCardSet u = triviaCardSetsRepository.findTriviaCardSetById(newCard.getTriviaCardSetId());
         u.addCardCountByOne();
-        System.out.println(u.getCardCount());
         triviaCardSetsRepository.save(u);
         return triviaCardRepository.save(newCard);
     }
@@ -95,21 +91,22 @@ public class TriviaCardService {
 
         return triviaCardRepository.save(updatedCard);
 
-
     }
 
-
-    //#TODO implement own validation checking
-    public static boolean isCardValid(TriviaCard card) {
-        System.out.println(card);
-        if ((card == null) ||
-                (card.getQuestion() == null || card.getQuestion().trim().equals("")) ||
-                (card.getCorrectAnswer() == null || card.getCorrectAnswer().trim().equals("")) ||
-                (card.getAnswers() == null)) {
+    public boolean isCardValid(TriviaCard card) {
+        if (card == null) return false;
+        if (card.getQuestion() == null || card.getQuestion().trim().equals("")) return false;
+        if (card.getCorrectAnswer() == null || card.getCorrectAnswer().trim().equals("")) return false;
+        if (card.getAnswers() == null || card.getAnswers().size() != 4) {
             return false;
-        } else {
-            return true;
         }
+        if (card.getPoints() == null || card.getPoints().trim().equals("")) return false;
+        try{
+            if (Integer.parseInt(card.getPoints()) < 0) return false;
+        } catch (NumberFormatException e) {
+            return false;
+        }
+        return true;
     }
 }
 

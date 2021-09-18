@@ -5,23 +5,17 @@ import com.revature.flash_back_api.models.documents.Threads;
 import com.revature.flash_back_api.models.repos.SubforumRepository;
 import com.revature.flash_back_api.models.repos.ThreadRepository;
 import com.revature.flash_back_api.util.exceptions.InvalidRequestException;
-import com.revature.flash_back_api.web.dtos.ThreadDTO;
-import org.junit.*;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
-import org.omg.CORBA.DynAnyPackage.Invalid;
+import static org.junit.jupiter.api.Assertions.*;
 
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
-
 import java.util.ArrayList;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.Mockito.*;
 
 class ForumServiceTest {
 
