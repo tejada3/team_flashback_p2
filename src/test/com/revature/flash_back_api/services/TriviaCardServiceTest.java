@@ -42,6 +42,13 @@ class TriviaCardServiceTest {
 
     @Test
     void getCardsBySetId() {
+
+        String setId = "valid";
+
+        sut.getCardsBySetId(setId);
+
+        verify(mockTriviaCardRepo, times(1)).findAllByTriviaCardSetId(anyString());
+
     }
 
     @Test
@@ -49,7 +56,6 @@ class TriviaCardServiceTest {
         List<String> ans = Arrays.asList("one", "two", "three", "four");
         TriviaCard card = new TriviaCard("triviaCardSetId", "question", "correctAnswer", "1", ans);
         TriviaCardSet set = new TriviaCardSet("topic");
-        // when(mockStudentRepo.findByEmail("peter.parker@asgard.net")).thenReturn(invalidStudent);
 
         when(mockTriviaCardSetsRepo.findTriviaCardSetById(any())).thenReturn(set);
 
@@ -73,10 +79,28 @@ class TriviaCardServiceTest {
 
     @Test
     void deleteCardById() {
+        String id = "valid";
+        List<String> ans = Arrays.asList("one", "two", "three", "four");
+        TriviaCard card = new TriviaCard("triviaCardSetId", "question", "correctAnswer", "1", ans);
+        TriviaCardSet set = new TriviaCardSet("topic");
+
+        when(mockTriviaCardRepo.deleteTriviaCardById(id)).thenReturn(card);
+        when(mockTriviaCardSetsRepo.findTriviaCardSetById(card.getTriviaCardSetId())).thenReturn(set);
+
+        sut.deleteCardById(id);
+
+        verify(mockTriviaCardSetsRepo, times(1)).save(any());
+
     }
 
     @Test
     void deleteAllByTriviaCardSetId() {
+        String id = "valid";
+
+        sut.deleteAllByTriviaCardSetId(id);
+
+        verify(mockTriviaCardRepo, times(1)).deleteAllByTriviaCardSetId(any());
+
     }
 
     @Test

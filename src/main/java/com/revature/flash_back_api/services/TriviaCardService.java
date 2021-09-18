@@ -39,7 +39,6 @@ public class TriviaCardService {
 
 
     public List<TriviaCardDTO> getCardsBySetId(String setId){
-        System.out.println(triviaCardRepository.findAllByTriviaCardSetId(setId));
         return triviaCardRepository.findAllByTriviaCardSetId(setId)
                 .stream()
                 .map(TriviaCardDTO::new)
@@ -59,8 +58,6 @@ public class TriviaCardService {
     }
 
     public TriviaCard deleteCardById(String id) {
-
-
         TriviaCard t = triviaCardRepository.deleteTriviaCardById(id);
         TriviaCardSet u = triviaCardSetsRepository.findTriviaCardSetById(t.getTriviaCardSetId());
         if (u.getCardCount()!=0) {
