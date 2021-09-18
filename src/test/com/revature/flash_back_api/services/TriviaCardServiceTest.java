@@ -37,7 +37,6 @@ class TriviaCardServiceTest {
         sut.findAll();
 
         verify(mockTriviaCardRepo, times(1)).findAll();
-
     }
 
     @Test
@@ -52,7 +51,29 @@ class TriviaCardServiceTest {
     }
 
     @Test
-    public void saveNewCard_returnsSuccessfully_givenValidData() {
+    public void updateCard_returnsSuccessfully_givenValidData() {
+        List<String> ans = Arrays.asList("one", "two", "three", "four");
+        TriviaCard card = new TriviaCard("triviaCardSetId", "question", "correctAnswer", "1", ans);
+
+        sut.updateCard(card);
+
+        verify(mockTriviaCardRepo, times(1)).save(card);
+    }
+
+    @Test
+    public void updateCard_throwsException_givenInvalidData() {
+        TriviaCard card = new TriviaCard("triviaCardSetId", "question", "correctAnswer", "1", null);
+        boolean testResult = false;
+        try{
+            sut.updateCard(card);
+        } catch (InvalidRequestException ire) {
+            testResult = true;
+        }
+        assertTrue(testResult);
+    }
+
+    @Test
+    public void saveNewCard_returnsSuccessfully_givenInvalidData() {
         List<String> ans = Arrays.asList("one", "two", "three", "four");
         TriviaCard card = new TriviaCard("triviaCardSetId", "question", "correctAnswer", "1", ans);
         TriviaCardSet set = new TriviaCardSet("topic");
@@ -78,7 +99,7 @@ class TriviaCardServiceTest {
     }
 
     @Test
-    void deleteCardById() {
+    public void deleteCardById_returns() {
         String id = "valid";
         List<String> ans = Arrays.asList("one", "two", "three", "four");
         TriviaCard card = new TriviaCard("triviaCardSetId", "question", "correctAnswer", "1", ans);
@@ -90,11 +111,10 @@ class TriviaCardServiceTest {
         sut.deleteCardById(id);
 
         verify(mockTriviaCardSetsRepo, times(1)).save(any());
-
     }
 
     @Test
-    void deleteAllByTriviaCardSetId() {
+    public void deleteAllByTriviaCardSetId() {
         String id = "valid";
 
         sut.deleteAllByTriviaCardSetId(id);

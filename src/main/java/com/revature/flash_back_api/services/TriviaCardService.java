@@ -72,7 +72,6 @@ public class TriviaCardService {
     }
 
     public TriviaCard updateCard(TriviaCard triviaCard){
-
         TriviaCard updatedCard = new TriviaCard();
 
         updatedCard.setId(triviaCard.getId());
@@ -81,13 +80,10 @@ public class TriviaCardService {
         updatedCard.setCorrectAnswer(triviaCard.getCorrectAnswer());
         updatedCard.setAnswers(triviaCard.getAnswers());
         updatedCard.setPoints(triviaCard.getPoints());
-
         if(!isCardValid(updatedCard)){
             throw new InvalidRequestException("Invalid Trivia Card data provided");
         }
-
         return triviaCardRepository.save(updatedCard);
-
     }
 
     public boolean isCardValid(TriviaCard card) {
