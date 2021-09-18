@@ -35,7 +35,51 @@ class TriviaCardSetsServiceTest {
     }
 
     @Test
-    void createSet_returnsSuccessfully_givenValidData() {
+    public void updateSet_returnsSuccessfully_givenValidSet() {
+        TriviaCardSet set = new TriviaCardSet("topic");
+
+        sut.updateSet(set);
+
+        verify(mockTCSRepo, times(1)).save(set);
+    }
+
+    @Test
+    public void updateSet_throwsException_givenInvalidData() {
+        TriviaCardSet set = new TriviaCardSet("");
+
+        boolean testResult = false;
+
+        try{
+            sut.updateSet(set);
+        } catch (InvalidRequestException ire) {
+            testResult = true;
+        }
+
+        assertTrue(testResult);
+
+    }
+
+    @Test
+    public void updateSet_throwsException_givenDuplicateTopic() {
+        TriviaCardSet set1 = new TriviaCardSet("duplicate");
+        TriviaCardSet set2 = new TriviaCardSet("duplicate");
+
+        when(mockTCSRepo.findTriviaCardSetByTopic(set1.getTopic())).thenReturn(set2);
+
+        boolean testResult = false;
+
+        try{
+            sut.updateSet(set1);
+        } catch (ResourcePersistenceException rpe) {
+            testResult = true;
+        }
+
+        assertTrue(testResult);
+
+    }
+
+    @Test
+    public void createSet_returnsSuccessfully_givenValidData() {
         TriviaCardSet set = new TriviaCardSet("valid");
 
         sut.createSet(set);
@@ -44,7 +88,7 @@ class TriviaCardSetsServiceTest {
     }
 
     @Test
-    void createSet_throwsException_givenInvalidData() {
+    public void createSet_throwsException_givenInvalidData() {
         TriviaCardSet set = new TriviaCardSet("");
 
         boolean testResult = false;
@@ -59,7 +103,7 @@ class TriviaCardSetsServiceTest {
     }
 
     @Test
-    void createSet_throwsException_givenExistingTopic() {
+    public void createSet_throwsException_givenExistingTopic() {
         TriviaCardSet set1 = new TriviaCardSet("duplicate");
         TriviaCardSet set2 = new TriviaCardSet("duplicate");
 
@@ -76,11 +120,12 @@ class TriviaCardSetsServiceTest {
     }
 
     @Test
-    void deleteSet() {
-    }
+    public void deleteSet() {
+        TriviaCardSet set = new TriviaCardSet("topic");
 
-    @Test
-    void updateSet() {
+        sut.deleteSet(set);
+
+        verify(mockTCSRepo, times(1)).deleteTriviaCardSetById(any());
     }
 
     @Test

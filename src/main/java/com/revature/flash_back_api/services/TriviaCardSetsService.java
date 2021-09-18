@@ -42,7 +42,6 @@ public class TriviaCardSetsService {
 
     public void deleteSet(TriviaCardSet triviaCardSetId){
         triviaCardSetsRepo.deleteTriviaCardSetById(triviaCardSetId.getId());
-        return;
     }
 
     public TriviaCardSet updateSet(TriviaCardSet triviaCardSet){
