@@ -63,7 +63,7 @@ public class TriviaCardSetsService {
         return triviaCardSetsRepo.save(updatedSet);
     }
 
-    private boolean isTriviaCardSetValid(TriviaCardSet newTriviaCardSet) {
+    public boolean isTriviaCardSetValid(TriviaCardSet newTriviaCardSet) {
         if (newTriviaCardSet == null || newTriviaCardSet.getTopic().trim().equals("")){
             return false;
         } else {
