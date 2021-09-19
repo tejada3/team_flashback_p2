@@ -2,8 +2,10 @@ package com.revature.flash_back_api.services;
 
 import com.revature.flash_back_api.models.documents.User;
 import com.revature.flash_back_api.models.repos.UsersRepository;
+import com.revature.flash_back_api.util.exceptions.AuthenticationException;
 import com.revature.flash_back_api.util.exceptions.InvalidRequestException;
 import com.revature.flash_back_api.util.exceptions.ResourcePersistenceException;
+import com.revature.flash_back_api.web.dtos.Principal;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -30,6 +32,20 @@ class UsersServiceTest {
         sut.findAll();
 
         verify(mockUserRepo, times(1)).findAllByOrderByTotalScoreDesc();
+    }
+
+    @Test
+    public void updateScore() {
+        User user = new User("firstName", "lastName", "email@email.com", "username", "password");
+        String username = "username";
+        String score = "2";
+
+        when(mockUserRepo.findUserByUsername(username)).thenReturn(user);
+
+        sut.updateScore(username, score);
+
+        verify(mockUserRepo, times(1)).save(user);
+
     }
 
     @Test
@@ -86,7 +102,55 @@ class UsersServiceTest {
     }
 
     @Test
-    void login() {
+    public void login_throwsException_givenNullUsernameAndPassword() {
+        String username = null;
+        String password = null;
+
+        boolean testResult = false;
+
+        try{
+            sut.login(username, password);
+        } catch (InvalidRequestException ire) {
+            testResult = true;
+        }
+        assertTrue(testResult);
+    }
+
+    @Test
+    public void login_throwsException_givenInvalidCredentials() {
+        String username = "username";
+        String password = "password";
+
+        when(mockUserRepo.findUserByUsernameAndPassword(username, password)).thenReturn(null);
+
+        boolean testResult = false;
+
+        try {
+            sut.login(username, password);
+        } catch (AuthenticationException ae) {
+            testResult = true;
+        }
+
+        assertTrue(testResult);
+    }
+
+    @Test
+    public void login_returnsSuccessfully_givenValidUsernameAndPassword() {
+        User user = new User("firstName", "lastName", "email@email.com", "username", "password");
+        user.setId("1234");
+
+        String username = "username";
+        String password = "password";
+
+        when(mockUserRepo.findUserByUsernameAndPassword(username, password)).thenReturn(user);
+
+        try {
+            sut.login(username, password);
+        } catch (Exception e) {
+
+        }
+
+        verify(mockUserRepo, times(1)).findUserByUsernameAndPassword(username, password);
     }
 
     @Test
