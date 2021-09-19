@@ -2,6 +2,8 @@ package com.revature.flash_back_api.services;
 
 import com.revature.flash_back_api.models.documents.User;
 import com.revature.flash_back_api.models.repos.UsersRepository;
+import com.revature.flash_back_api.util.exceptions.InvalidRequestException;
+import com.revature.flash_back_api.util.exceptions.ResourcePersistenceException;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -31,7 +33,56 @@ class UsersServiceTest {
     }
 
     @Test
-    void register() {
+    void register_throwsException_givenInvalidUserData() {
+        User user = null;
+        boolean testResult = false;
+        try{
+            sut.register(user);
+        } catch (InvalidRequestException ire) {
+            testResult = true;
+        }
+        assertTrue(testResult);
+    }
+
+    @Test
+    void register_throwsException_givenDuplicateUsername() {
+        User user1 = new User("firstName", "lastName", "email@email.com", "username", "password");
+        User user2 = new User("firstName", "lastName", "emailll@email.com", "username", "password");
+
+        when(mockUserRepo.findUserByUsername(user1.getUsername())).thenReturn(user2);
+
+        boolean testResult = false;
+        try{
+            sut.register(user1);
+        } catch (ResourcePersistenceException ire) {
+            testResult = true;
+        }
+        assertTrue(testResult);
+    }
+
+    @Test
+    void register_throwsException_givenDuplicateEmail() {
+        User user1 = new User("firstName", "lastName", "email@email.com", "username1", "password");
+        User user2 = new User("firstName", "lastName", "email@email.com", "username2", "password");
+
+        when(mockUserRepo.findUserByEmail(user1.getEmail())).thenReturn(user2);
+
+        boolean testResult = false;
+        try{
+            sut.register(user1);
+        } catch (ResourcePersistenceException ire) {
+            testResult = true;
+        }
+        assertTrue(testResult);
+    }
+
+    @Test
+    public void register_returnsSuccessfully_givenValidUserData() {
+        User user = new User("firstName", "lastName", "email@email.com", "username", "password");
+
+        sut.register(user);
+
+        verify(mockUserRepo, times(1)).save(user);
     }
 
     @Test
