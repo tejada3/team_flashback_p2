@@ -32,12 +32,10 @@ public class ThreadCommentService {
     }
 
     public ThreadComment saveNewComment(ThreadComment newComment) {
-        System.out.println(newComment);
         if (!isCommentValid(newComment)) {
             throw new InvalidRequestException("Invalid Comment!");
         }
         newComment.setTimestamp(LocalDate.now());
-        System.out.println(newComment);
         return ThreadCommentRepository.save(newComment);
 
     }
@@ -48,9 +46,8 @@ public class ThreadCommentService {
     }
 
     //#TODO implement own validation checking
-    public static boolean isCommentValid(ThreadComment comment) {
-        System.out.println(comment);
-        if ((comment == null) || comment.getContent() == ""){
+    public boolean isCommentValid(ThreadComment comment) {
+        if ((comment == null) || comment.getContent().trim().equals("")){
             return false;
         } else {
             return true;

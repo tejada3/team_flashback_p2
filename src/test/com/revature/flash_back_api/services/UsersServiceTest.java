@@ -134,24 +134,23 @@ class UsersServiceTest {
         assertTrue(testResult);
     }
 
-    @Test
-    public void login_returnsSuccessfully_givenValidUsernameAndPassword() {
-        User user = new User("firstName", "lastName", "email@email.com", "username", "password");
-        user.setId("1234");
-
-        String username = "username";
-        String password = "password";
-
-        when(mockUserRepo.findUserByUsernameAndPassword(username, password)).thenReturn(user);
-
-        try {
-            sut.login(username, password);
-        } catch (Exception e) {
-
-        }
-
-        verify(mockUserRepo, times(1)).findUserByUsernameAndPassword(username, password);
-    }
+//    @Test
+//    public void login_returnsSuccessfully_givenValidUsernameAndPassword() {
+//        User user = new User("firstName", "lastName", "email@email.com", "username", "password");
+//
+//        String username = "username";
+//        String password = "password";
+//
+//        when(mockUserRepo.findUserByUsernameAndPassword(username, password)).thenReturn(user);
+//
+//        try {
+//            sut.login(username, password);
+//        } catch (Exception e) {
+//
+//        }
+//
+//        verify(mockUserRepo, times(1)).findUserByUsernameAndPassword(username, password);
+//    }
 
     @Test
     public void isUserValid_returnsFalse_givenNullUser() {
