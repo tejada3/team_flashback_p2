@@ -8,7 +8,6 @@ import java.util.List;
 
 @Repository
 public interface ThreadRepository extends MongoRepository<Threads, String> {
-    //TODO finish this interface
 
     Threads findThreadsById(String id);
     List<Threads> findBySubforumId(String subforumId);

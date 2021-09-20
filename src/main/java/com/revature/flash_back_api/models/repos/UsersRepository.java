@@ -10,12 +10,12 @@ import java.util.List;
 @Repository
 public interface UsersRepository extends MongoRepository<User, User> {
 
-    //#TODO finish writing queries
 
     User findUserByUsernameAndPassword(String username, String password);
     User findUserByUsername(String username);
     User findUserByEmail(String email);
     List<User> findAllByOrderByTotalScoreDesc();
+
 
 
 

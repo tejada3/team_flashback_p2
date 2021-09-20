@@ -93,4 +93,16 @@ public class UsersService {
         return true;
     }
 
+
+    public User getUserByUsername(String username){
+
+        try {
+           User user = usersRepo.findUserByUsername(username);
+           return user;
+        }catch(Exception u){
+            System.out.println(u.getMessage());
+        }
+        return null;
+    }
+
 }

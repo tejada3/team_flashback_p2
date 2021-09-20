@@ -55,4 +55,10 @@ public class UserController {
     }
 
 
+    @GetMapping(produces = "application/json", path = "/getUser")
+    public UserDTO getUser(@RequestParam String u){
+        return new UserDTO(usersService.getUserByUsername(u));
+    }
+
+
 }
